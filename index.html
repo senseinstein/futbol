@@ -20,8 +20,12 @@
   .card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
     padding:16px 18px;text-decoration:none;color:var(--txt);transition:.15s}
   a.card:hover{border-color:var(--accent2);transform:translateY(-1px)}
-  .flag{font-size:22px}
-  .card .t{font-size:17px;font-weight:600;margin:6px 0 2px}
+  .flag{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+    border-radius:50%;font-size:13px;font-weight:800;letter-spacing:.02em;color:#fff;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+  .mx{background:#1a7a3a} .es{background:#c8102e} .en{background:#3d195b}
+  .it{background:#0f74b8} .de{background:#b3000c} .fr{background:#1b3a97}
+  .card .t{font-size:17px;font-weight:600;margin:8px 0 2px}
   .card .d{color:var(--mut);font-size:13px}
   .badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;vertical-align:middle;margin-left:6px}
   .on{background:#12331d;color:#5ddc86}
@@ -43,32 +47,32 @@
   <h2>Ligas de primera división</h2>
   <div class="grid">
     <a class="card" href="ligamx.html">
-      <div class="flag">🇲🇽</div>
+      <div class="flag mx">MX</div>
       <div class="t">Liga MX <span class="badge on">ACTIVA</span></div>
       <div class="d">México · Apertura 2026</div>
     </a>
     <div class="card disabled">
-      <div class="flag">🇪🇸</div>
+      <div class="flag es">ESP</div>
       <div class="t">LaLiga <span class="badge soon">PRONTO</span></div>
       <div class="d">España</div>
     </div>
     <div class="card disabled">
-      <div class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <div class="flag en">ENG</div>
       <div class="t">Premier League <span class="badge soon">PRONTO</span></div>
       <div class="d">Inglaterra</div>
     </div>
     <div class="card disabled">
-      <div class="flag">🇮🇹</div>
+      <div class="flag it">ITA</div>
       <div class="t">Serie A <span class="badge soon">PRONTO</span></div>
       <div class="d">Italia</div>
     </div>
     <div class="card disabled">
-      <div class="flag">🇩🇪</div>
+      <div class="flag de">GER</div>
       <div class="t">Bundesliga <span class="badge soon">PRONTO</span></div>
       <div class="d">Alemania</div>
     </div>
     <div class="card disabled">
-      <div class="flag">🇫🇷</div>
+      <div class="flag fr">FRA</div>
       <div class="t">Ligue 1 <span class="badge soon">PRONTO</span></div>
       <div class="d">Francia</div>
     </div>
