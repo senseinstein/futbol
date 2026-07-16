@@ -41,6 +41,20 @@
     no en certezas. Juega con responsabilidad.
   </div>
 
+  <div id="update-banner" style="display:none;background:#12331d;border:1px solid #1f6b3a;border-radius:12px;padding:14px 16px;margin:0 0 22px;font-size:14px">
+    <b style="color:#5ddc86">✅ La jornada más reciente ya terminó.</b>
+    <span style="color:#cdd6e0"> El análisis de la siguiente jornada se prepara automáticamente cada <b>miércoles</b> y te llega listo para publicar.</span>
+    <a href="https://claude.ai" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;white-space:nowrap"> · Pedir actualización ahora →</a>
+  </div>
+  <script>
+    // Fecha de cierre de la jornada publicada más reciente (día siguiente, 00:00 hora de México).
+    // Al preparar cada nueva jornada se actualiza esta fecha.
+    var finJornada = new Date('2026-07-19T00:00:00-06:00'); // fin Jornada 1
+    if (new Date() >= finJornada) {
+      document.getElementById('update-banner').style.display = 'block';
+    }
+  </script>
+
   <h2>Apertura 2026</h2>
   <a class="card" href="apertura2026-j1.html">
     <div>
