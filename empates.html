@@ -44,21 +44,33 @@
 
   <div class="box warn">
     <h3>⚠️ Mi opinión (honesta)</h3>
-    La Martingala <b>no cambia el valor esperado</b>: cada apuesta sigue teniendo el margen de la casa en contra. "Funciona" hasta que llega una mala racha — y ya llegó: <b>la J1 tuvo 0 empates</b>, así que los 18 equipos doblaron de golpe. Tras 2 jornadas vamos <b>−$2,840</b> y la J3 pide <b>$6,000</b>. El problema real es que <b>no hay tope de pérdida</b>: el stake crece geométricamente ($100→200→400→800→1,600…) y los topes de mesa de las casas te frenan antes de recuperar. Apostar a los DOS equipos de un partido es, además, apostar dos veces al mismo empate. <b>Como juego/simulación es interesante; como estrategia de largo plazo es de alto riesgo de ruina.</b> Más abajo propongo variantes más seguras.
+    La Martingala <b>no cambia el valor esperado</b>: cada apuesta sigue teniendo el margen de la casa en contra. "Funciona" hasta que llega una mala racha — y ya llegó: <b>la J1 tuvo 0 empates</b>, así que los 18 equipos doblaron de golpe. Con un bank de <b>$10,000</b>, tras 2 jornadas quedan <b>$7,160</b> y la J3 pide <b>$6,000</b> (el 84% de lo que queda): una jornada más de mala racha y el bank se agota. El problema real es que <b>no hay tope de pérdida</b>: el stake crece geométricamente ($100→200→400→800→1,600…) y los topes de mesa de las casas te frenan antes de recuperar. Apostar a los DOS equipos de un partido es, además, apostar dos veces al mismo empate. <b>Como juego/simulación es interesante; como estrategia de largo plazo es de alto riesgo de ruina.</b> Más abajo propongo variantes más seguras.
   </div>
 
   <h2 class="sec">📊 Cómo van los resultados (al día de hoy, tras J1–J2)</h2>
   <div class="tiles">
+    <div class="tile"><div class="k">Bank inicial</div><div class="v">$10,000</div></div>
+    <div class="tile"><div class="k">Bank actual (tras J2)</div><div class="v neg">$7,160</div></div>
     <div class="tile"><div class="k">Balance acumulado</div><div class="v neg">−$2,840</div></div>
-    <div class="tile"><div class="k">Jornadas jugadas</div><div class="v">2</div></div>
-    <div class="tile"><div class="k">Empates acertados</div><div class="v">4 <span style="font-size:13px;color:var(--mut)">/ 18 apuestas·jornada</span></div></div>
-    <div class="tile"><div class="k">Stake requerido J3</div><div class="v neg">$6,000</div></div>
+    <div class="tile"><div class="k">Stake requerido J3</div><div class="v neg">$6,000</div><div class="k" style="margin-top:3px;color:var(--warn)">84% del bank restante</div></div>
   </div>
   <div class="box" style="font-size:13.5px">
     <b>J1:</b> 0 empates en 9 partidos → −$1,800 (todos doblan a $200). &nbsp;·&nbsp;
     <b>J2:</b> 2 empates (Tigres 2-2 San Luis · Atlante 1-1 América) → 4 aciertos (+$1,760), 14 fallos (−$2,800) = −$1,040. &nbsp;·&nbsp;
     <b>Acumulado: −$2,840.</b> Turnover apostado: $5,400.
   </div>
+
+  <h2 class="sec">🏦 Balance del bank por jornada</h2>
+  <table>
+    <thead><tr><th>Jornada</th><th class="n">Empates</th><th class="n">Ganancias</th><th class="n">Pérdidas</th><th class="n">Resultado</th><th class="n">Bank</th></tr></thead>
+    <tbody>
+      <tr><td>Bank inicial</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n"><b>$10,000</b></td></tr>
+      <tr><td>Jornada 1</td><td class="n">0 / 9</td><td class="n pos">+$0</td><td class="n neg">−$1,800</td><td class="n neg">−$1,800</td><td class="n">$8,200</td></tr>
+      <tr><td>Jornada 2</td><td class="n">2 / 9</td><td class="n pos">+$1,760</td><td class="n neg">−$2,800</td><td class="n neg">−$1,040</td><td class="n">$7,160</td></tr>
+      <tr style="border-top:2px solid var(--line)"><td>Jornada 3 <span style="color:var(--mut)">(a jugar)</span></td><td class="n">?</td><td class="n">?</td><td class="n neg">stake $6,000</td><td class="n">?</td><td class="n" style="color:var(--warn)">≥ $1,160*</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mut);font-size:13px">*Si la J3 fuera otra jornada sin empates, se perderían los $6,000 y el bank caería a <b style="color:var(--bad)">$1,160</b> — al borde de la ruina. Cada empate de la J3 recupera su apuesta a ~3.2 y suma al bank. El bank de $10,000 aguanta pocas jornadas más de mala racha: ahí está el peligro de la Martingala.</p>
 
   <h2 class="sec">📈 Pronóstico de empates por equipo + objetivo</h2>
   <p style="color:var(--mut);font-size:13px">Empates esperados en el torneo (17 juegos) = <b>estimación</b> por estilo de juego (pendiente de afinar con el conteo exacto del torneo pasado). <b>Objetivo</b> = tope inferior (esperados −1): al ganar ese número de empates, se deja de apostar el equipo. "Racha" = jornadas seguidas sin empatar (define el stake). <span class="chip c-model">MODELO J3</span> = el modelo lo ve entre los empates más probables de la J3.</p>
