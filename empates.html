@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Empates (Martingala) · Liga MX</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--accent:#3fb950;--accent2:#58a6ff;--warn:#e3b341;--bad:#f85149;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 18px 60px}
+  h1{font-size:25px;margin:0 0 4px} .sub{color:var(--mut);font-size:14px}
+  .back{display:inline-block;margin:8px 0 0;color:var(--accent2);font-size:13px;text-decoration:none}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;font-size:14px}
+  .box h3{margin:0 0 6px;font-size:15px}
+  .warn{background:#2a1410;border:1px solid #5a2a20;color:#f3b0a0}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .tile .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+  .tile .v{font-size:26px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+  .neg{color:var(--bad)} .pos{color:var(--accent)}
+  h2.sec{font-size:18px;margin:30px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+  th,td{padding:6px 6px;border-bottom:1px solid #232a36;text-align:left}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mut)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .hi{background:#12331d} .s400{color:var(--bad);font-weight:700} .s100{color:var(--accent);font-weight:700}
+  .chip{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:5px}
+  .c-model{background:#0f2942;color:#7fb8ff} .c-done{background:#12331d;color:#5ddc86}
+  footer{color:var(--mut);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Todas las ligas</a>
+  <h1>⚖️ Estrategia de Empates — Martingala</h1>
+  <div class="sub">Liga MX · Apertura 2026 · simulación y seguimiento · monto base $100 por equipo</div>
+
+  <div class="box">
+    <h3>📋 La estrategia</h3>
+    Apostamos al <b>empate de cada equipo</b>, en <b>todos</b> los partidos de cada jornada (sin importar la probabilidad; el modelo solo marca cuáles son más probables). Por equipo: si su partido <b>NO</b> empata, en la siguiente jornada <b>doblamos</b> la apuesta; si <b>empata</b>, ganamos y <b>reseteamos a $100</b>. Cada equipo tiene un <b>objetivo</b> de empates ganados en el torneo (un tope inferior a su promedio esperado): al alcanzarlo, dejamos de apostar ese equipo. Cuota de empate modelada ≈ <b>3.20</b>.
+  </div>
+
+  <div class="box warn">
+    <h3>⚠️ Mi opinión (honesta)</h3>
+    La Martingala <b>no cambia el valor esperado</b>: cada apuesta sigue teniendo el margen de la casa en contra. "Funciona" hasta que llega una mala racha — y ya llegó: <b>la J1 tuvo 0 empates</b>, así que los 18 equipos doblaron de golpe. Tras 2 jornadas vamos <b>−$2,840</b> y la J3 pide <b>$6,000</b>. El problema real es que <b>no hay tope de pérdida</b>: el stake crece geométricamente ($100→200→400→800→1,600…) y los topes de mesa de las casas te frenan antes de recuperar. Apostar a los DOS equipos de un partido es, además, apostar dos veces al mismo empate. <b>Como juego/simulación es interesante; como estrategia de largo plazo es de alto riesgo de ruina.</b> Más abajo propongo variantes más seguras.
+  </div>
+
+  <h2 class="sec">📊 Cómo van los resultados (al día de hoy, tras J1–J2)</h2>
+  <div class="tiles">
+    <div class="tile"><div class="k">Balance acumulado</div><div class="v neg">−$2,840</div></div>
+    <div class="tile"><div class="k">Jornadas jugadas</div><div class="v">2</div></div>
+    <div class="tile"><div class="k">Empates acertados</div><div class="v">4 <span style="font-size:13px;color:var(--mut)">/ 18 apuestas·jornada</span></div></div>
+    <div class="tile"><div class="k">Stake requerido J3</div><div class="v neg">$6,000</div></div>
+  </div>
+  <div class="box" style="font-size:13.5px">
+    <b>J1:</b> 0 empates en 9 partidos → −$1,800 (todos doblan a $200). &nbsp;·&nbsp;
+    <b>J2:</b> 2 empates (Tigres 2-2 San Luis · Atlante 1-1 América) → 4 aciertos (+$1,760), 14 fallos (−$2,800) = −$1,040. &nbsp;·&nbsp;
+    <b>Acumulado: −$2,840.</b> Turnover apostado: $5,400.
+  </div>
+
+  <h2 class="sec">📈 Pronóstico de empates por equipo + objetivo</h2>
+  <p style="color:var(--mut);font-size:13px">Empates esperados en el torneo (17 juegos) = <b>estimación</b> por estilo de juego (pendiente de afinar con el conteo exacto del torneo pasado). <b>Objetivo</b> = tope inferior (esperados −1): al ganar ese número de empates, se deja de apostar el equipo. "Racha" = jornadas seguidas sin empatar (define el stake). <span class="chip c-model">MODELO J3</span> = el modelo lo ve entre los empates más probables de la J3.</p>
+  <table>
+    <thead><tr><th>Equipo</th><th class="n">Esp.</th><th class="n">Objetivo</th><th class="n">Logrados</th><th class="n">Racha</th><th class="n">Stake J3</th><th class="n">P&L</th></tr></thead>
+    <tbody>
+      <tr><td>Querétaro <span class="chip c-model">MODELO J3</span></td><td class="n">6</td><td class="n">5</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Tijuana <span class="chip c-model">MODELO J3</span></td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Juárez <span class="chip c-model">MODELO J3</span></td><td class="n">5</td><td class="n">4</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Pumas <span class="chip c-model">MODELO J3</span></td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Atlas</td><td class="n">5</td><td class="n">4</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Chivas</td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Cruz Azul</td><td class="n">3</td><td class="n">2</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>León</td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Monterrey</td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Necaxa</td><td class="n">5</td><td class="n">4</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Pachuca</td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Puebla</td><td class="n">5</td><td class="n">4</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Santos</td><td class="n">5</td><td class="n">4</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr><td>Toluca</td><td class="n">4</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n s400">$400</td><td class="n neg">−$300</td></tr>
+      <tr class="hi"><td>Tigres <span class="chip c-done">1 empate</span></td><td class="n">5</td><td class="n">4</td><td class="n">1</td><td class="n">0</td><td class="n s100">$100</td><td class="n pos">+$340</td></tr>
+      <tr class="hi"><td>San Luis <span class="chip c-done">1 empate</span></td><td class="n">5</td><td class="n">4</td><td class="n">1</td><td class="n">0</td><td class="n s100">$100</td><td class="n pos">+$340</td></tr>
+      <tr class="hi"><td>Atlante <span class="chip c-done">1 empate</span></td><td class="n">4</td><td class="n">3</td><td class="n">1</td><td class="n">0</td><td class="n s100">$100</td><td class="n pos">+$340</td></tr>
+      <tr class="hi"><td>América <span class="chip c-done">1 empate</span></td><td class="n">3</td><td class="n">2</td><td class="n">1</td><td class="n">0</td><td class="n s100">$100</td><td class="n pos">+$340</td></tr>
+      <tr style="border-top:2px solid var(--line)"><td><b>TOTAL 18 equipos</b></td><td class="n"></td><td class="n"></td><td class="n">4</td><td class="n"></td><td class="n"><b>$6,000</b></td><td class="n neg"><b>−$2,840</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec">🎯 Qué apostar en la Jornada 3</h2>
+  <div class="box" style="font-size:13.5px">
+    <b>14 equipos van a $400</b> (perdieron J1 y J2): Querétaro, Tijuana, Juárez, Pumas, Atlas, Chivas, Cruz Azul, León, Monterrey, Necaxa, Pachuca, Puebla, Santos, Toluca.<br>
+    <b>4 equipos van a $100</b> (empataron en J2 y resetearon): Tigres, San Luis, Atlante, América.<br><br>
+    <b>Desembolso total J3 = $6,000.</b> Si un equipo empata en su partido, su apuesta paga ≈3.2 (recupera y resetea a $100); si no, dobla a $800 para la J4.<br><br>
+    <b>El modelo ve como empates más probables de la J3:</b> San Luis–Tijuana (30%), Querétaro–Tigres (30%), Juárez–Pumas (29%) y Puebla–Chivas (28%). Los menos probables: Cruz Azul–Atlante (20%), América–Santos (22%).
+  </div>
+
+  <h2 class="sec">🛡️ Variantes más seguras (recomendadas)</h2>
+  <div class="box" style="font-size:13.5px">
+    1. <b>Tope de doblez (stop-loss):</b> limita la Martingala a 3–4 pasos por equipo ($100→800). Si no empata, aceptas la pérdida y reinicias — evita la ruina.<br>
+    2. <b>Solo empates probables:</b> apuesta el empate únicamente en los partidos donde el modelo da ≥28–30% (no en los 18). Reduces el turnover y las malas rachas.<br>
+    3. <b>Stake plano:</b> $100 fijo al empate en los partidos con valor (cuota &gt; 1/probabilidad). Menos emoción, mucho menor riesgo de ruina.
+  </div>
+
+  <footer>
+    Simulación con fines de seguimiento. Cuota de empate modelada 3.20 (varía por partido). Empates esperados por equipo = estimación pendiente de afinar con datos históricos exactos.<br><br>
+    <b>Juego responsable.</b> Los sistemas de progresión (Martingala) NO garantizan ganancias y pueden provocar pérdidas rápidas y grandes. Ninguna apuesta es segura. Apuesta solo lo que puedas permitirte perder.
+  </footer>
+</div>
+</body>
+</html>
