@@ -16,6 +16,8 @@
   .match{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px;margin:16px 0}
   .mhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
   .mhead h2{font-size:19px;margin:0} .mhead .when{color:var(--mut);font-size:13px}
+  .fin{font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px}
+  .fin-ok{background:#12331d;color:#5ddc86} .fin-no{background:#3a1614;color:#ff6a60}
   .row{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px}
   .col{flex:1 1 260px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
   .col h3{margin:0 0 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -24,14 +26,12 @@
   .lbl{width:80px;color:var(--mut);font-size:13px} .val{width:38px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
   table{width:100%;border-collapse:collapse;font-size:13.5px}
   td{padding:4px 2px;border-bottom:1px solid #232a36} td.s{color:var(--mut)} td.p{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
-  .bets li{margin:5px 0}
-  .pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:6px}
-  .r-bajo{background:#12331d;color:#5ddc86} .r-medio{background:#33290f;color:#e3b341} .r-alto{background:#3a1614;color:#ff6a60}
-  .stake{color:var(--accent2);font-weight:700}
-  .best{border-left:3px solid var(--accent);padding-left:9px}
+  .hit{color:var(--accent)} .miss{color:var(--bad)}
+  .realrow td{border-top:2px solid var(--line);border-bottom:none;padding-top:6px}
+  .bets li{margin:5px 0} .best{border-left:3px solid var(--accent);padding-left:9px}
   .verdict{margin-top:10px;font-size:13.5px;color:#cdd6e0} .verdict b{color:var(--txt)}
+  .plost{font-size:12px;font-weight:700;padding:2px 9px;border-radius:6px;background:#3a1614;color:#ff6a60;margin-left:8px}
   h2.sec{font-size:18px;margin:34px 0 4px;border-bottom:1px solid var(--line);padding-bottom:6px}
-  .rank li{margin:6px 0}
   footer{color:var(--mut);font-size:12px;margin-top:34px;border-top:1px solid var(--line);padding-top:14px}
   a{color:var(--accent2)}
 </style>
@@ -40,315 +40,119 @@
 <div class="wrap">
 <header>
   <h1>Liga MX — Jornada 3 · Apertura 2026</h1>
-  <div class="sub">Análisis de valor · 31 jul – 2 ago 2026 · probabilidades propias vs. cuotas de mercado</div>
-  <div style="margin-top:8px"><a href="ligamx.html" style="color:#58a6ff;font-size:13px;text-decoration:none">← Liga MX (jornadas)</a> &nbsp;·&nbsp; <a href="index.html" style="color:#58a6ff;font-size:13px;text-decoration:none">Todas las ligas</a> &nbsp;·&nbsp; <a href="quiniela-2026-j3.html" style="color:#5ddc86;font-size:13px;font-weight:700;text-decoration:none">🖨️ Imprimir quiniela</a></div>
+  <div class="sub">Análisis de valor · 31 jul – 2 ago 2026 · <b style="color:var(--txt)">jornada finalizada, resultados en cada tarjeta</b></div>
+  <div style="margin-top:8px"><a href="ligamx.html" style="color:#58a6ff;font-size:13px;text-decoration:none">← Liga MX (jornadas)</a> &nbsp;·&nbsp; <a href="index.html" style="color:#58a6ff;font-size:13px;text-decoration:none">Todas las ligas</a> &nbsp;·&nbsp; <a href="quiniela-2026-j3.html" style="color:#5ddc86;font-size:13px;font-weight:700;text-decoration:none">🖨️ Quiniela</a></div>
 </header>
 
 <div class="legend">
-  <span class="tag">🟢 Riesgo bajo</span><span class="tag">🟡 Riesgo medio</span><span class="tag">🔴 Riesgo alto</span><span class="tag">Stake = escala 1–10</span>
+  <span class="tag">🟢 Riesgo bajo</span><span class="tag">🟡 Riesgo medio</span><span class="tag">🔴 Riesgo alto</span><span class="tag">✅ acierto · ❌ fallo</span>
 </div>
 
 <div class="disc">
-  <b>Lee esto primero.</b> Abre el <b>viernes 31</b> (3 partidos) y sigue sábado 1 y domingo 2. Modelo ampliado (forma J1–J2, local/visitante, H2H por sede, xG, línea de mercado). Tras dos jornadas muy parejas, hay favoritos claros (Cruz Azul, América, Toluca) y varios duelos abiertos. <b>Confirma alineaciones y cuota el mismo día.</b> Estimaciones para valor a largo plazo, no certezas. Juega con responsabilidad.
+  <b>Jornada cerrada.</b> Otra jornada de sorpresas: <b>ganador 4/9</b> — cayeron favoritos (Cruz Azul perdió con Atlante, Tigres con Querétaro, Pachuca con León) y hubo 2 empates. Marcador exacto: <b>2/9</b>. Los parlays volvieron a caer.
 </div>
 
-<!-- 1 -->
-<div class="match">
-  <div class="mhead"><h2>Puebla <span style="color:var(--mut)">vs</span> Chivas</h2><span class="when">Vie 31 jul · 19:00 · Cuauhtémoc</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Puebla</span><span class="bar"><span style="width:25%;background:var(--accent)"></span></span><span class="val">25%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:28%;background:var(--warn)"></span></span><span class="val">28%</span></div>
-      <div class="prob"><span class="lbl">Chivas</span><span class="bar"><span style="width:47%;background:var(--accent2)"></span></span><span class="val">47%</span></div>
-      <div class="verdict"><b>Pick:</b> Chivas (favorito −154). Domina el H2H (5–0 el último) pero llega con ataque frío (1 gol en 2). Partido de pocos goles.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>1–0 Chivas</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">11%</td></tr><tr><td>0–0</td><td class="p">10%</td></tr><tr><td>2–1 Chivas</td><td class="p">9%</td></tr><tr><td class="s">1–0 Puebla</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Under 2.5 goles (Chivas sin gol) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">5</span></li>
-        <li>Chivas gana o empata (X2) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-        <li>Empate al medio tiempo (~44%) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 1 --><div class="match"><div class="mhead"><h2>Puebla <span style="color:var(--mut)">vs</span> Chivas</h2><span class="when">Vie 31 · <span class="fin fin-no">FINAL 1–1 · Empate ❌</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Puebla</span><span class="bar"><span style="width:25%;background:var(--accent)"></span></span><span class="val">25%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:28%;background:var(--warn)"></span></span><span class="val">28%</span></div>
+<div class="prob"><span class="lbl">Chivas</span><span class="bar"><span style="width:47%;background:var(--accent2)"></span></span><span class="val">47%</span></div>
+<div class="verdict"><b>Pick:</b> Chivas. <span class="miss">❌ Falló</span> — empataron 1–1.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>1–0 Chivas</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">11%</td></tr><tr><td>0–0</td><td class="p">10%</td></tr><tr class="realrow"><td><b>Real: 1–1</b></td><td class="p hit">✅ acertado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Under 2.5 <span class="hit">✅ (1–1)</span></li><li>Chivas o empate (X2) <span class="hit">✅</span></li></ul></div></div></div>
 
-<!-- 2 -->
-<div class="match">
-  <div class="mhead"><h2>Atlético San Luis <span style="color:var(--mut)">vs</span> Tijuana</h2><span class="when">Vie 31 jul · 21:00 · Libertad Financiera</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">San Luis</span><span class="bar"><span style="width:38%;background:var(--accent)"></span></span><span class="val">38%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:30%;background:var(--warn)"></span></span><span class="val">30%</span></div>
-      <div class="prob"><span class="lbl">Tijuana</span><span class="bar"><span style="width:32%;background:var(--accent2)"></span></span><span class="val">32%</span></div>
-      <div class="verdict"><b>Value:</b> Tijuana es líder (6 pts) pero juega de visita y el H2H es de <b>67% empates y 100% BTTS</b>. San Luis ligero favorito por localía (+125). Duelo parejo.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>1–1</td><td class="p">13%</td></tr><tr><td>2–1 San Luis</td><td class="p">10%</td></tr><tr><td>1–2 Tijuana</td><td class="p">9%</td></tr><tr><td>2–2</td><td class="p">8%</td></tr><tr><td class="s">1–0 San Luis</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Ambos anotan – Sí (H2H 100% BTTS) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">5</span></li>
-        <li>Empate (H2H 67% empates, +250) <span class="pill r-alto">ALTO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 2 --><div class="match"><div class="mhead"><h2>Atlético San Luis <span style="color:var(--mut)">vs</span> Tijuana</h2><span class="when">Vie 31 · <span class="fin fin-no">FINAL 0–0 · Empate ❌</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">San Luis</span><span class="bar"><span style="width:38%;background:var(--accent)"></span></span><span class="val">38%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:30%;background:var(--warn)"></span></span><span class="val">30%</span></div>
+<div class="prob"><span class="lbl">Tijuana</span><span class="bar"><span style="width:32%;background:var(--accent2)"></span></span><span class="val">32%</span></div>
+<div class="verdict"><b>Pick:</b> San Luis (cerrado). <span class="miss">❌ Falló</span> — 0–0.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>1–1</td><td class="p">13%</td></tr><tr><td>2–1 San Luis</td><td class="p">10%</td></tr><tr class="realrow"><td><b>Real: 0–0</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Ambos anotan – Sí <span class="miss">❌ (0–0)</span></li><li>Empate (H2H 67%) <span class="hit">✅</span></li></ul></div></div></div>
 
-<!-- 3 -->
-<div class="match">
-  <div class="mhead"><h2>FC Juárez <span style="color:var(--mut)">vs</span> Pumas</h2><span class="when">Vie 31 jul · 21:00 · Benito Juárez</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Juárez</span><span class="bar"><span style="width:32%;background:var(--accent)"></span></span><span class="val">32%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:29%;background:var(--warn)"></span></span><span class="val">29%</span></div>
-      <div class="prob"><span class="lbl">Pumas</span><span class="bar"><span style="width:39%;background:var(--accent2)"></span></span><span class="val">39%</span></div>
-      <div class="verdict"><b>Pick:</b> Pumas (ligero favorito). Juárez es último y no ha anotado en 2 fechas; Pumas ganó en J2. Cerrado y de pocos goles.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>0–1 Pumas</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">11%</td></tr><tr><td>0–0</td><td class="p">10%</td></tr><tr><td>1–0 Juárez</td><td class="p">8%</td></tr><tr><td class="s">1–0 Pumas</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Under 2.5 goles (Juárez sin gol) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">4</span></li>
-        <li>Empate al medio tiempo (~45%) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-        <li>BTTS – No <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 3 --><div class="match"><div class="mhead"><h2>FC Juárez <span style="color:var(--mut)">vs</span> Pumas</h2><span class="when">Vie 31 · <span class="fin fin-ok">FINAL 1–5 · Pumas ✅</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Juárez</span><span class="bar"><span style="width:32%;background:var(--accent)"></span></span><span class="val">32%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:29%;background:var(--warn)"></span></span><span class="val">29%</span></div>
+<div class="prob"><span class="lbl">Pumas</span><span class="bar"><span style="width:39%;background:var(--accent2)"></span></span><span class="val">39%</span></div>
+<div class="verdict"><b>Pick:</b> Pumas. <span class="hit">✅ Acertado</span> — goleó 1–5.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>0–1 Pumas</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">11%</td></tr><tr class="realrow"><td><b>Real: 1–5 Pumas</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Under 2.5 <span class="miss">❌ (fueron 6)</span></li><li>BTTS – No <span class="miss">❌</span></li></ul></div></div></div>
 
-<!-- 4 -->
-<div class="match">
-  <div class="mhead"><h2>Querétaro <span style="color:var(--mut)">vs</span> Tigres</h2><span class="when">Sáb 1 ago · 17:00 · La Corregidora</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Querétaro</span><span class="bar"><span style="width:27%;background:var(--accent)"></span></span><span class="val">27%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:30%;background:var(--warn)"></span></span><span class="val">30%</span></div>
-      <div class="prob"><span class="lbl">Tigres</span><span class="bar"><span style="width:43%;background:var(--accent2)"></span></span><span class="val">43%</span></div>
-      <div class="verdict"><b>Pick:</b> Tigres (favorito 1.86) aunque con arranque flojo (1 pt). El foco real: es un cruce de MUY pocos goles (9 partidos de Querétaro seguidos bajo 2.5).</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>1–0 Tigres</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">12%</td></tr><tr><td>0–0</td><td class="p">10%</td></tr><tr><td>0–1 Tigres</td><td class="p">9%</td></tr><tr><td class="s">1–0 Querétaro</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best" style="border-color:#5ddc86">⭐ <b>Under 2.5 goles</b> — la tendencia más fuerte de la jornada <span class="pill r-bajo">BAJO-MEDIO</span> · stake <span class="stake">6</span></li>
-        <li>Empate al medio tiempo (~46%) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 4 --><div class="match"><div class="mhead"><h2>Querétaro <span style="color:var(--mut)">vs</span> Tigres</h2><span class="when">Sáb 1 · <span class="fin fin-no">FINAL 3–2 · Querétaro ❌</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Querétaro</span><span class="bar"><span style="width:27%;background:var(--accent)"></span></span><span class="val">27%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:30%;background:var(--warn)"></span></span><span class="val">30%</span></div>
+<div class="prob"><span class="lbl">Tigres</span><span class="bar"><span style="width:43%;background:var(--accent2)"></span></span><span class="val">43%</span></div>
+<div class="verdict"><b>Pick:</b> Tigres. <span class="miss">❌ Falló</span> — Querétaro ganó 3–2.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>1–0 Tigres</td><td class="p">12%</td></tr><tr><td>1–1</td><td class="p">12%</td></tr><tr class="realrow"><td><b>Real: 3–2 Querétaro</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best" style="border-color:#5ddc86">⭐ Under 2.5 <span class="miss">❌ (fueron 5)</span></li></ul></div></div></div>
 
-<!-- 5 -->
-<div class="match">
-  <div class="mhead"><h2>Atlas <span style="color:var(--mut)">vs</span> Monterrey</h2><span class="when">Sáb 1 ago · 19:00 · Estadio Jalisco</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Atlas</span><span class="bar"><span style="width:35%;background:var(--accent)"></span></span><span class="val">35%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:27%;background:var(--warn)"></span></span><span class="val">27%</span></div>
-      <div class="prob"><span class="lbl">Monterrey</span><span class="bar"><span style="width:38%;background:var(--accent2)"></span></span><span class="val">38%</span></div>
-      <div class="verdict"><b>Value:</b> Atlas es líder sorpresa (6 pts) pero <b>Monterrey está invicto en los últimos 12 H2H</b> y el cruce da 3+ goles el 83% de las veces. Partido abierto.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>2–1 Monterrey</td><td class="p">11%</td></tr><tr><td>1–2 Monterrey</td><td class="p">10%</td></tr><tr><td>2–2</td><td class="p">9%</td></tr><tr><td>1–1</td><td class="p">9%</td></tr><tr><td class="s">2–1 Atlas</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best" style="border-color:#5ddc86">⭐ <b>Over 2.5 + BTTS Sí</b> (83% del H2H con 3+ goles) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">6</span></li>
-        <li>Monterrey gana o empata (X2, dominio H2H) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 5 --><div class="match"><div class="mhead"><h2>Atlas <span style="color:var(--mut)">vs</span> Monterrey</h2><span class="when">Sáb 1 · <span class="fin fin-ok">FINAL 0–2 · Monterrey ✅</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Atlas</span><span class="bar"><span style="width:35%;background:var(--accent)"></span></span><span class="val">35%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:27%;background:var(--warn)"></span></span><span class="val">27%</span></div>
+<div class="prob"><span class="lbl">Monterrey</span><span class="bar"><span style="width:38%;background:var(--accent2)"></span></span><span class="val">38%</span></div>
+<div class="verdict"><b>Pick:</b> Monterrey (cerrado). <span class="hit">✅ Acertado</span> — ganó 0–2.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>2–1 Monterrey</td><td class="p">11%</td></tr><tr><td>1–2 Monterrey</td><td class="p">10%</td></tr><tr class="realrow"><td><b>Real: 0–2 Monterrey</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best" style="border-color:#5ddc86">⭐ Over 2.5 + BTTS <span class="miss">❌ (0–2)</span></li><li>Monterrey X2 <span class="hit">✅</span></li></ul></div></div></div>
 
-<!-- 6 -->
-<div class="match">
-  <div class="mhead"><h2>León <span style="color:var(--mut)">vs</span> Pachuca</h2><span class="when">Sáb 1 ago · 19:00 · Nou Camp</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">León</span><span class="bar"><span style="width:33%;background:var(--accent)"></span></span><span class="val">33%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:27%;background:var(--warn)"></span></span><span class="val">27%</span></div>
-      <div class="prob"><span class="lbl">Pachuca</span><span class="bar"><span style="width:40%;background:var(--accent2)"></span></span><span class="val">40%</span></div>
-      <div class="verdict"><b>Pick:</b> Pachuca (favorito +125 pese a ir de visita). León es 17º y encaja mucho en casa; Pachuca es peligroso fuera. Escenario de goles.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>1–2 Pachuca</td><td class="p">11%</td></tr><tr><td>2–1 Pachuca</td><td class="p">9%</td></tr><tr><td>1–1</td><td class="p">9%</td></tr><tr><td>2–2</td><td class="p">8%</td></tr><tr><td class="s">2–1 León</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Over 2.5 goles (~1.72) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">5</span></li>
-        <li>Ambos anotan – Sí (~1.61) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">4</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 6 --><div class="match"><div class="mhead"><h2>León <span style="color:var(--mut)">vs</span> Pachuca</h2><span class="when">Sáb 1 · <span class="fin fin-no">FINAL 1–0 · León ❌</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">León</span><span class="bar"><span style="width:33%;background:var(--accent)"></span></span><span class="val">33%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:27%;background:var(--warn)"></span></span><span class="val">27%</span></div>
+<div class="prob"><span class="lbl">Pachuca</span><span class="bar"><span style="width:40%;background:var(--accent2)"></span></span><span class="val">40%</span></div>
+<div class="verdict"><b>Pick:</b> Pachuca. <span class="miss">❌ Falló</span> — León ganó 1–0 (su 1er triunfo).</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>1–2 Pachuca</td><td class="p">11%</td></tr><tr><td>1–1</td><td class="p">9%</td></tr><tr class="realrow"><td><b>Real: 1–0 León</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Over 2.5 <span class="miss">❌ (fue 1)</span></li></ul></div></div></div>
 
-<!-- 7 -->
-<div class="match">
-  <div class="mhead"><h2>Cruz Azul <span style="color:var(--mut)">vs</span> Atlante</h2><span class="when">Sáb 1 ago · 21:00 · Ciudad de los Deportes</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Cruz Azul</span><span class="bar"><span style="width:68%;background:var(--accent)"></span></span><span class="val">68%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:20%;background:var(--warn)"></span></span><span class="val">20%</span></div>
-      <div class="prob"><span class="lbl">Atlante</span><span class="bar"><span style="width:12%;background:var(--accent2)"></span></span><span class="val">12%</span></div>
-      <div class="verdict"><b>Pick:</b> Cruz Azul, líder invicto (6 pts) y favorito neto (−330) ante un Atlante recién ascendido y con 1 punto. ML sin valor; el valor está en el hándicap.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>2–0 Cruz Azul</td><td class="p">14%</td></tr><tr><td>2–1 Cruz Azul</td><td class="p">11%</td></tr><tr><td>1–0 Cruz Azul</td><td class="p">10%</td></tr><tr><td>3–0 Cruz Azul</td><td class="p">9%</td></tr><tr><td class="s">3–1 Cruz Azul</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Cruz Azul −1.5 hándicap (valor vs −330) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">5</span></li>
-        <li>Over 2.5 goles (~1.53) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 7 --><div class="match"><div class="mhead"><h2>Cruz Azul <span style="color:var(--mut)">vs</span> Atlante</h2><span class="when">Sáb 1 · <span class="fin fin-no">FINAL 2–3 · Atlante ❌</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Cruz Azul</span><span class="bar"><span style="width:68%;background:var(--accent)"></span></span><span class="val">68%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:20%;background:var(--warn)"></span></span><span class="val">20%</span></div>
+<div class="prob"><span class="lbl">Atlante</span><span class="bar"><span style="width:12%;background:var(--accent2)"></span></span><span class="val">12%</span></div>
+<div class="verdict"><b>Pick:</b> Cruz Azul. <span class="miss">❌ Falló</span> — Atlante dio el sorpresón 2–3.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>2–0 Cruz Azul</td><td class="p">14%</td></tr><tr><td>2–1 Cruz Azul</td><td class="p">11%</td></tr><tr class="realrow"><td><b>Real: 2–3 Atlante</b></td><td class="p miss">❌ no listado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Cruz Azul −1.5 <span class="miss">❌</span></li><li>Over 2.5 <span class="hit">✅ (5 goles)</span></li></ul></div></div></div>
 
-<!-- 8 -->
-<div class="match">
-  <div class="mhead"><h2>América <span style="color:var(--mut)">vs</span> Santos</h2><span class="when">Dom 2 ago · 17:00 · Estadio Banorte</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">América</span><span class="bar"><span style="width:63%;background:var(--accent)"></span></span><span class="val">63%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:22%;background:var(--warn)"></span></span><span class="val">22%</span></div>
-      <div class="prob"><span class="lbl">Santos</span><span class="bar"><span style="width:15%;background:var(--accent2)"></span></span><span class="val">15%</span></div>
-      <div class="verdict"><b>Pick:</b> América (invicto, −256) por fin de local, ante un Santos último (0 pts, peor defensa). Domina el H2H (3–2–0). El total es la duda (Santos suele cerrarse).</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>2–0 América</td><td class="p">13%</td></tr><tr><td>2–1 América</td><td class="p">11%</td></tr><tr><td>1–0 América</td><td class="p">11%</td></tr><tr><td>3–1 América</td><td class="p">8%</td></tr><tr><td class="s">1–1</td><td class="p s">8%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">América −1 hándicap <span class="pill r-medio">MEDIO</span> · stake <span class="stake">4</span></li>
-        <li>América gana <span class="pill r-bajo">BAJO-MEDIO</span> · stake <span class="stake">4</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 8 --><div class="match"><div class="mhead"><h2>América <span style="color:var(--mut)">vs</span> Santos</h2><span class="when">Dom 2 · <span class="fin fin-ok">FINAL 3–0 · América ✅</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">América</span><span class="bar"><span style="width:63%;background:var(--accent)"></span></span><span class="val">63%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:22%;background:var(--warn)"></span></span><span class="val">22%</span></div>
+<div class="prob"><span class="lbl">Santos</span><span class="bar"><span style="width:15%;background:var(--accent2)"></span></span><span class="val">15%</span></div>
+<div class="verdict"><b>Pick:</b> América. <span class="hit">✅ Acertado</span> — goleó 3–0.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>2–0 América</td><td class="p">13%</td></tr><tr><td>3–1 América</td><td class="p">8%</td></tr><tr class="realrow"><td><b>Real: 3–0 América</b></td><td class="p miss">❌ (cerca)</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">América −1 hándicap <span class="hit">✅ (por 3)</span></li></ul></div></div></div>
 
-<!-- 9 -->
-<div class="match">
-  <div class="mhead"><h2>Toluca <span style="color:var(--mut)">vs</span> Necaxa</h2><span class="when">Dom 2 ago · 19:00 · Nemesio Díez</span></div>
-  <div class="row">
-    <div class="col"><h3>Ganador (1X2)</h3>
-      <div class="prob"><span class="lbl">Toluca</span><span class="bar"><span style="width:55%;background:var(--accent)"></span></span><span class="val">55%</span></div>
-      <div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:23%;background:var(--warn)"></span></span><span class="val">23%</span></div>
-      <div class="prob"><span class="lbl">Necaxa</span><span class="bar"><span style="width:22%;background:var(--accent2)"></span></span><span class="val">22%</span></div>
-      <div class="verdict"><b>Pick:</b> Toluca (−217), fuerte en casa (ganó los últimos 2 H2H 3–0 y 3–1) y con revancha tras caer en J2. Necaxa llega en forma (6 pts, Carranza encendido) → habrá goles.</div>
-    </div>
-    <div class="col"><h3>Marcador correcto</h3>
-      <table><tr><td>2–1 Toluca</td><td class="p">13%</td></tr><tr><td>2–0 Toluca</td><td class="p">11%</td></tr><tr><td>1–1</td><td class="p">9%</td></tr><tr><td>3–1 Toluca</td><td class="p">9%</td></tr><tr><td class="s">1–2 Necaxa</td><td class="p s">7%</td></tr></table>
-    </div>
-    <div class="col"><h3>Mejores apuestas</h3>
-      <ul class="bets" style="margin:0;padding-left:16px">
-        <li class="best">Over 2.5 goles (~1.47) <span class="pill r-medio">MEDIO</span> · stake <span class="stake">5</span></li>
-        <li>Toluca gana o empata (1X) <span class="pill r-bajo">BAJO-MEDIO</span> · stake <span class="stake">4</span></li>
-        <li>Ambos anotan – Sí <span class="pill r-medio">MEDIO</span> · stake <span class="stake">3</span></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- 9 --><div class="match"><div class="mhead"><h2>Toluca <span style="color:var(--mut)">vs</span> Necaxa</h2><span class="when">Dom 2 · <span class="fin fin-ok">FINAL 3–1 · Toluca ✅</span></span></div>
+<div class="row"><div class="col"><h3>Ganador (1X2)</h3>
+<div class="prob"><span class="lbl">Toluca</span><span class="bar"><span style="width:55%;background:var(--accent)"></span></span><span class="val">55%</span></div>
+<div class="prob"><span class="lbl">Empate</span><span class="bar"><span style="width:23%;background:var(--warn)"></span></span><span class="val">23%</span></div>
+<div class="prob"><span class="lbl">Necaxa</span><span class="bar"><span style="width:22%;background:var(--accent2)"></span></span><span class="val">22%</span></div>
+<div class="verdict"><b>Pick:</b> Toluca. <span class="hit">✅ Acertado</span> — ganó 3–1.</div></div>
+<div class="col"><h3>Marcador correcto</h3><table><tr><td>2–1 Toluca</td><td class="p">13%</td></tr><tr><td>3–1 Toluca</td><td class="p">9%</td></tr><tr class="realrow"><td><b>Real: 3–1 Toluca</b></td><td class="p hit">✅ acertado</td></tr></table></div>
+<div class="col"><h3>Mejores apuestas</h3><ul class="bets" style="margin:0;padding-left:16px"><li class="best">Over 2.5 <span class="hit">✅ (4 goles)</span></li><li>Toluca 1X <span class="hit">✅</span></li></ul></div></div></div>
 
-<!-- RESUMEN -->
-<h2 class="sec">🏆 Ganadores sugeridos (1X2)</h2>
+<h2 class="sec">🏆 Ganadores (pronóstico vs. resultado) — 4/9</h2>
 <table style="margin-top:8px">
-  <tr><td>Puebla–Chivas</td><td class="p" style="color:var(--accent2)">Chivas (47%)</td></tr>
-  <tr><td>San Luis–Tijuana</td><td class="p" style="color:var(--warn)">San Luis leve (38/30/32)</td></tr>
-  <tr><td>Juárez–Pumas</td><td class="p" style="color:var(--accent2)">Pumas leve (39%)</td></tr>
-  <tr><td>Querétaro–Tigres</td><td class="p" style="color:var(--accent2)">Tigres (43%)</td></tr>
-  <tr><td>Atlas–Monterrey</td><td class="p" style="color:var(--warn)">Cerrado (35/27/38)</td></tr>
-  <tr><td>León–Pachuca</td><td class="p" style="color:var(--accent2)">Pachuca (40%)</td></tr>
-  <tr><td>Cruz Azul–Atlante</td><td class="p" style="color:var(--accent)">Cruz Azul (68%)</td></tr>
-  <tr><td>América–Santos</td><td class="p" style="color:var(--accent)">América (63%)</td></tr>
-  <tr><td>Toluca–Necaxa</td><td class="p" style="color:var(--accent)">Toluca (55%)</td></tr>
+  <tr><td>Puebla–Chivas</td><td>Chivas</td><td class="p miss">❌ 1–1</td></tr>
+  <tr><td>San Luis–Tijuana</td><td>San Luis</td><td class="p miss">❌ 0–0</td></tr>
+  <tr><td>Juárez–Pumas</td><td>Pumas</td><td class="p hit">✅ 1–5</td></tr>
+  <tr><td>Querétaro–Tigres</td><td>Tigres</td><td class="p miss">❌ 3–2</td></tr>
+  <tr><td>Atlas–Monterrey</td><td>Monterrey</td><td class="p hit">✅ 0–2</td></tr>
+  <tr><td>León–Pachuca</td><td>Pachuca</td><td class="p miss">❌ 1–0</td></tr>
+  <tr><td>Cruz Azul–Atlante</td><td>Cruz Azul</td><td class="p miss">❌ 2–3</td></tr>
+  <tr><td>América–Santos</td><td>América</td><td class="p hit">✅ 3–0</td></tr>
+  <tr><td>Toluca–Necaxa</td><td>Toluca</td><td class="p hit">✅ 3–1</td></tr>
 </table>
+<p style="color:var(--mut);font-size:13px">Marcador exacto: 2/9 (Puebla–Chivas 1–1, Toluca–Necaxa 3–1). Value bets top: 1/5 (Toluca Over 2.5).</p>
 
-<h2 class="sec">🤝 Partidos más propensos al empate</h2>
-<ol class="rank">
-  <li><b>San Luis–Tijuana (~30%)</b> — H2H con 67% de empates.</li>
-  <li><b>Querétaro–Tigres (~30%)</b> — cruce cerradísimo, mitad de duelos en La Corregidora acaban en empate.</li>
-  <li><b>Juárez–Pumas (~29%)</b> — parejo y de pocos goles (Juárez sin anotar).</li>
-</ol>
-
-<h2 class="sec">⏱️ Empate al medio tiempo (mejores)</h2>
-<table style="margin-top:8px">
-  <tr><td class="s">Querétaro–Tigres</td><td class="p" style="color:var(--accent)">46%</td></tr>
-  <tr><td class="s">Juárez–Pumas</td><td class="p" style="color:var(--accent)">45%</td></tr>
-  <tr><td class="s">Puebla–Chivas</td><td class="p" style="color:var(--accent)">44%</td></tr>
-  <tr><td class="s">San Luis–Tijuana</td><td class="p">42%</td></tr>
-</table>
-
-<h2 class="sec">💎 Top picks de valor</h2>
-<ol class="rank">
-  <li><b>Querétaro–Tigres: Under 2.5</b> <span class="pill r-bajo">BAJO-MEDIO</span> stake <span class="stake">6</span> — 9 partidos seguidos de Querétaro bajo 2.5.</li>
-  <li><b>Atlas–Monterrey: Over 2.5 + BTTS</b> <span class="pill r-medio">MEDIO</span> stake <span class="stake">6</span> — 83% del H2H con 3+ goles.</li>
-  <li><b>Cruz Azul −1.5</b> <span class="pill r-medio">MEDIO</span> stake <span class="stake">5</span> — líder invicto vs. recién ascendido.</li>
-  <li><b>San Luis–Tijuana: BTTS Sí</b> <span class="pill r-medio">MEDIO</span> stake <span class="stake">5</span> — H2H 100% ambos anotan.</li>
-  <li><b>Toluca–Necaxa: Over 2.5</b> <span class="pill r-medio">MEDIO</span> stake <span class="stake">5</span> — local goleador + Necaxa en forma.</li>
-</ol>
-
-<!-- PARLAYS -->
-<h2 class="sec">🎰 Parlay 1 — Resultado directo (9)</h2>
-<table style="margin-top:8px">
-  <tr><td class="s">Puebla–Chivas</td><td>Gana <b>Chivas</b></td><td class="p">47%</td><td class="p s">1.65</td></tr>
-  <tr><td class="s">San Luis–Tijuana</td><td>Gana <b>San Luis</b></td><td class="p">38%</td><td class="p s">2.25</td></tr>
-  <tr><td class="s">Juárez–Pumas</td><td>Gana <b>Pumas</b></td><td class="p">39%</td><td class="p s">2.63</td></tr>
-  <tr><td class="s">Querétaro–Tigres</td><td>Gana <b>Tigres</b></td><td class="p">43%</td><td class="p s">1.86</td></tr>
-  <tr><td class="s">Atlas–Monterrey</td><td>Gana <b>Monterrey</b></td><td class="p">38%</td><td class="p s">2.54</td></tr>
-  <tr><td class="s">León–Pachuca</td><td>Gana <b>Pachuca</b></td><td class="p">40%</td><td class="p s">2.25</td></tr>
-  <tr><td class="s">Cruz Azul–Atlante</td><td>Gana <b>Cruz Azul</b></td><td class="p">68%</td><td class="p s">1.30</td></tr>
-  <tr><td class="s">América–Santos</td><td>Gana <b>América</b></td><td class="p">63%</td><td class="p s">1.39</td></tr>
-  <tr><td class="s">Toluca–Necaxa</td><td>Gana <b>Toluca</b></td><td class="p">55%</td><td class="p s">1.46</td></tr>
-  <tr style="border-top:2px solid var(--line)"><td colspan="2"><b>Cuota combinada ≈ 274</b> ($100 → ~$27,400)</td><td class="p" style="color:var(--bad)">≈0.11%</td><td class="p s">1 en ~930</td></tr>
-</table>
-<p style="color:var(--warn);font-size:13px"><b>Realidad:</b> 9 directos es lotería. Solo stake mínimo (1).</p>
-
-<h2 class="sec">🛡️ Parlay 2 — Con doble oportunidad</h2>
-<table style="margin-top:8px">
-  <tr><td class="s">Puebla–Chivas</td><td><b>Chivas</b> o empate</td><td class="p">75%</td><td class="p s">1.28</td></tr>
-  <tr><td class="s">San Luis–Tijuana</td><td><b>San Luis</b> o empate</td><td class="p">68%</td><td class="p s">1.36</td></tr>
-  <tr><td class="s">Juárez–Pumas</td><td><b>Pumas</b> o empate</td><td class="p">68%</td><td class="p s">1.36</td></tr>
-  <tr><td class="s">Querétaro–Tigres</td><td><b>Tigres</b> o empate</td><td class="p">73%</td><td class="p s">1.30</td></tr>
-  <tr><td class="s">Atlas–Monterrey</td><td><b>Monterrey</b> o empate</td><td class="p">65%</td><td class="p s">1.42</td></tr>
-  <tr><td class="s">León–Pachuca</td><td><b>Pachuca</b> o empate</td><td class="p">67%</td><td class="p s">1.38</td></tr>
-  <tr><td class="s">Cruz Azul–Atlante</td><td><b>Cruz Azul</b> o empate</td><td class="p">88%</td><td class="p s">1.12</td></tr>
-  <tr><td class="s">América–Santos</td><td><b>América</b> o empate</td><td class="p">85%</td><td class="p s">1.16</td></tr>
-  <tr><td class="s">Toluca–Necaxa</td><td><b>Toluca</b> o empate</td><td class="p">78%</td><td class="p s">1.22</td></tr>
-  <tr style="border-top:2px solid var(--line)"><td colspan="2"><b>Cuota combinada ≈ 9.6</b> ($100 → ~$960)</td><td class="p" style="color:var(--warn)">≈6.4%</td><td class="p s">1 en ~16</td></tr>
-</table>
-
-<h2 class="sec">🎯 Parlay 3 — Mixto (doble oportunidad solo donde hay duda)</h2>
-<table style="margin-top:8px">
-  <tr><td class="s">Cruz Azul–Atlante</td><td>Gana <b>Cruz Azul</b> <span class="pill r-bajo">DIRECTO</span></td><td class="p">68%</td><td class="p s">1.30</td></tr>
-  <tr><td class="s">América–Santos</td><td>Gana <b>América</b> <span class="pill r-bajo">DIRECTO</span></td><td class="p">63%</td><td class="p s">1.39</td></tr>
-  <tr><td class="s">Toluca–Necaxa</td><td>Gana <b>Toluca</b> <span class="pill r-bajo">DIRECTO</span></td><td class="p">55%</td><td class="p s">1.46</td></tr>
-  <tr><td class="s">Puebla–Chivas</td><td><b>Chivas</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">75%</td><td class="p s">1.28</td></tr>
-  <tr><td class="s">San Luis–Tijuana</td><td><b>San Luis</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">68%</td><td class="p s">1.36</td></tr>
-  <tr><td class="s">Juárez–Pumas</td><td><b>Pumas</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">68%</td><td class="p s">1.36</td></tr>
-  <tr><td class="s">Querétaro–Tigres</td><td><b>Tigres</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">73%</td><td class="p s">1.30</td></tr>
-  <tr><td class="s">Atlas–Monterrey</td><td><b>Monterrey</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">65%</td><td class="p s">1.42</td></tr>
-  <tr><td class="s">León–Pachuca</td><td><b>Pachuca</b> o empate <span class="pill r-medio">DUDA</span></td><td class="p">67%</td><td class="p s">1.38</td></tr>
-  <tr style="border-top:2px solid var(--line)"><td colspan="2"><b>Cuota combinada ≈ 15.9</b> ($100 → ~$1,590)</td><td class="p" style="color:var(--accent)">≈2.6%</td><td class="p s">1 en ~38</td></tr>
-</table>
-<p style="color:var(--mut);font-size:13px">3 directos (favoritos claros) + 6 con cobertura. El punto medio. Riesgo medio, stake 2–3.</p>
-
-<h2 class="sec">🔒 Parlay de máxima probabilidad (tipos mixtos)</h2>
-<table style="margin-top:8px">
-  <tr><td class="s">Cruz Azul–Atlante</td><td><b>Cruz Azul</b> o empate (1X)</td><td class="p">88%</td><td class="p s">1.12</td></tr>
-  <tr><td class="s">América–Santos</td><td><b>América</b> o empate (1X)</td><td class="p">85%</td><td class="p s">1.16</td></tr>
-  <tr><td class="s">Toluca–Necaxa</td><td><b>Toluca</b> o empate (1X)</td><td class="p">78%</td><td class="p s">1.22</td></tr>
-  <tr><td class="s">Atlas–Monterrey</td><td><b>Over 1.5 goles</b></td><td class="p">80%</td><td class="p s">1.22</td></tr>
-  <tr style="border-top:2px solid var(--line)"><td colspan="2"><b>Cuota combinada ≈ 1.93</b> ($100 → ~$193)</td><td class="p" style="color:var(--accent)">≈47%</td><td class="p s">1 en ~2.1</td></tr>
-</table>
-<p style="color:var(--mut);font-size:13px">El combinado más seguro de la jornada. Riesgo bajo-medio, stake 3–4. Aun así, 4 patas pueden fallar en una.</p>
+<h2 class="sec">🎰 Parlays <span class="plost">TODOS PERDIDOS</span></h2>
+<p style="color:var(--mut);font-size:13px">Los 4 parlays (directo, doble oportunidad, mixto y máxima probabilidad) cayeron. El de máxima probabilidad se rompió con la <b>derrota de Cruz Azul ante Atlante</b> (Cruz Azul o empate falló). Tercera jornada seguida de mucha paridad y sorpresas de favoritos.</p>
 
 <footer>
-  Fuentes: ESPN, Mediotiempo, Récord, TUDN, El Informador, Squawka, Codere, bet365, micasino, SI. Datos J1–J2 al 31 jul 2026; líneas del fin de semana preliminares — verifica cuota y alineaciones el mismo día (ojo posibles ausencias de Tigres por Juego de Estrellas).<br><br>
-  <b>Juego responsable.</b> Ninguna apuesta es segura. Análisis orientado a valor esperado positivo a largo plazo, no una garantía. Apuesta con cabeza y solo lo que puedas permitirte perder.
+  Fuentes: ESPN, Mediotiempo, Récord, SI, El Informador, Excélsior. Resultados finales confirmados de la J3.<br><br>
+  <b>Juego responsable.</b> Registro honesto de aciertos y fallos, orientado a valor a largo plazo. Apuesta con cabeza y solo lo que puedas permitirte perder.
 </footer>
 </div>
 </body>
