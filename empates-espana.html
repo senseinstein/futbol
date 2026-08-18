@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Empate por jornada — España · 2 por jornada (Martingala)</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--accent:#3fb950;--accent2:#58a6ff;--warn:#e3b341;--bad:#f85149;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:26px 18px 60px}
+  h1{font-size:25px;margin:0 0 4px} .sub{color:var(--mut);font-size:14px}
+  .back{display:inline-block;margin:8px 0 0;color:var(--accent2);font-size:13px;text-decoration:none}
+  .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;font-size:14px}
+  .box h3{margin:0 0 6px;font-size:15px}
+  .warn{background:#2a1410;border:1px solid #5a2a20;color:#f3b0a0}
+  .good{background:#0f2317;border:1px solid #1f6b3a;color:#9fe6b8}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .tile .k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+  .tile .v{font-size:24px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+  .neg{color:var(--bad)} .pos{color:var(--accent)}
+  h2.sec{font-size:18px;margin:30px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}
+  th,td{padding:7px 7px;border-bottom:1px solid #232a36;text-align:left}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mut)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .pick{background:#12331d} .excl{opacity:.5}
+  .tag{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:5px}
+  .t-in{background:#12331d;color:#5ddc86} .t-out{background:#3a1614;color:#ff9a90} .t-star{background:#0f2942;color:#7fb8ff}
+  footer{color:var(--mut);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+  a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="empates.html">← Estrategia de empates</a> &nbsp;·&nbsp; <a class="back" href="index.html">Todas las ligas</a>
+  <h1>🇪🇸 Empate por jornada — España</h1>
+  <div class="sub">LaLiga 2026-27 · 2 empates por jornada · Martingala de una línea · base $100</div>
+
+  <div class="box">
+    <h3>📋 Tu estrategia (como la definiste)</h3>
+    Cada jornada busco <b>2 empates</b>, apostando <b>un partido a la vez</b>. Empiezo en <b>$100</b> al empate; si <b>no</b> cae, en el siguiente partido <b>doblo</b>; cuando <b>gano</b>, reinicio a $100 y busco el <b>segundo</b> empate de la jornada igual. La progresión (el doblez) <b>se arrastra</b> entre partidos y entre jornadas — solo se reinicia al ganar. Cuota de empate típica ≈ <b>3.20</b>.<br><br>
+    <b>Filtro anti-grandes:</b> <b>no</b> se juegan partidos de <b>Barcelona, Real Madrid ni Atlético de Madrid</b>… salvo cuando <b>juegan entre sí</b> (ahí el empate vuelve a ser probable). Se eligen los 2 partidos <b>más parejos / de más ADN empatador / de menos goles</b> de la jornada.
+  </div>
+
+  <div class="box good">
+    <h3>✅ Por qué el filtro anti-grandes es tan importante (dato histórico)</h3>
+    Revisé si las temporadas post-Mundial traen más empates: <b>no</b> hay tal patrón. De hecho la <b>2010-11</b> (justo tras ganar España el Mundial 2010) fue la de <b>menos empates: 20.8%</b>, por debajo del ~25% normal. <b>Pero</b> ese % bajo lo arrastraron los grandes, que ganaron casi todo (Madrid 5 empates, Barça 6 en toda la temporada). Como <b>tú los excluyes</b>, ese lastre no te afecta: te quedas con los equipos de en medio y abajo, que empatan mucho más. Por eso tu método aguantó incluso en la temporada menos empatadora. El "post-Mundial" no da ventaja; <b>el filtro sí.</b>
+  </div>
+
+  <div class="box warn">
+    <h3>⚠️ Nota honesta de riesgo</h3>
+    Con base $100 y bank $10,000 tienes <b>~100 unidades</b> = margen para ~6 dobleces seguidos ($100→$3,200 acumulando $6,300). La probabilidad de 6 partidos <b>bien elegidos</b> sin empate seguidos es ~10-12%: baja, pero no cero. A cuota 3.2, un solo acierto recupera todo lo perdido y deja ganancia (de hecho no necesitas doblar entero: bastaría multiplicar ×1.6, pero mantengo tu doblez). Tu resultado 2019-20 (juntar +$300,000 arrancando con 1,200 y una sola recarga de 400) fue real y muestra ejecución disciplinada — solo recuerda que también dependió de que no tocara la racha larga con el stake ya alto. Define un <b>tope</b> por si acaso. Juega con responsabilidad.
+  </div>
+
+  <h2 class="sec">🏦 Seguimiento (simulación)</h2>
+  <div class="tiles">
+    <div class="tile"><div class="k">Bank inicial</div><div class="v">$10,000</div></div>
+    <div class="tile"><div class="k">Bank actual</div><div class="v">$10,000</div></div>
+    <div class="tile"><div class="k">Empates logrados</div><div class="v">0</div></div>
+    <div class="tile"><div class="k">Stake actual</div><div class="v pos">$100</div><div class="k" style="margin-top:3px">base (sin racha)</div></div>
+  </div>
+  <table>
+    <thead><tr><th>Jornada</th><th>Empates cobrados</th><th class="n">Apostado</th><th class="n">Ganado</th><th class="n">Resultado</th><th class="n">Bank</th></tr></thead>
+    <tbody>
+      <tr><td>Inicio</td><td>—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n"><b>$10,000</b></td></tr>
+      <tr><td>Jornada 2 <span style="color:var(--mut)">(a jugar)</span></td><td class="n">?</td><td class="n">?</td><td class="n">?</td><td class="n">?</td><td class="n">?</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mut);font-size:13px">La estrategia arranca en la J2 (la J1 estuvo fragmentada). Tras cada jornada actualizo esta tabla con lo que cobraste y cómo quedó la progresión.</p>
+
+  <h2 class="sec">🎯 Candidatos de la Jornada 2 (elige 2)</h2>
+  <p style="color:var(--mut);font-size:13px">Partidos ordenados de <b>más</b> a <b>menos</b> propensos al empate (los de arriba son "los menos probables de tener un ganador claro"). En <span style="color:#ff9a90">rojo</span> los excluidos por el filtro anti-grandes. Recomendados en <span style="color:#5ddc86">verde</span>.</p>
+  <table>
+    <thead><tr><th>#</th><th>Partido</th><th class="n">Prob. empate</th><th>Por qué</th></tr></thead>
+    <tbody>
+      <tr class="pick"><td>1</td><td><b>Betis vs Real Sociedad</b> <span class="tag t-star">TOP</span></td><td class="n">33%</td><td>Nº1 y nº3 más empatadores de LaLiga (15 y 13 E). Parejos y ambos debutan.</td></tr>
+      <tr class="pick"><td>2</td><td><b>Valencia vs Celta</b> <span class="tag t-in">ELEGIBLE</span></td><td class="n">31%</td><td>Dos empatadores (10 y 12 E), muy parejos, ambos debutan.</td></tr>
+      <tr><td>3</td><td>Rayo vs Alavés <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Rayo 14 E, Alavés 10 E; partido cerrado y de pocos goles.</td></tr>
+      <tr><td>4</td><td>Málaga vs Deportivo <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Duelo de ascendidos muy parejo, pero con poca referencia (incierto).</td></tr>
+      <tr><td>5</td><td>Getafe vs Racing <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Sello Bordalás de pocos goles; Getafe algo favorito.</td></tr>
+      <tr><td>6</td><td>Athletic vs Sevilla <span class="tag t-in">ELEGIBLE</span></td><td class="n">27%</td><td>Athletic favorito en San Mamés aunque debuta.</td></tr>
+      <tr><td>7</td><td>Osasuna vs Levante <span class="tag t-in">ELEGIBLE</span></td><td class="n">25%</td><td>Osasuna claro favorito en El Sadar → menos empate.</td></tr>
+      <tr class="excl"><td>—</td><td>Elche vs <b>Barcelona</b> <span class="tag t-out">EXCLUIDO</span></td><td class="n">24%</td><td>Barça (grande) vs no-grande → fuera del filtro.</td></tr>
+      <tr class="excl"><td>—</td><td>Espanyol vs <b>Real Madrid</b> <span class="tag t-out">EXCLUIDO</span></td><td class="n">26%</td><td>Real Madrid (grande) vs no-grande → fuera del filtro.</td></tr>
+      <tr class="excl"><td>—</td><td><b>Atlético</b> vs Villarreal <span class="tag t-out">EXCLUIDO</span></td><td class="n">27%</td><td>Atlético (grande) vs no-grande → fuera del filtro.</td></tr>
+    </tbody>
+  </table>
+  <div class="box" style="font-size:13.5px">
+    <b>Mis 2 recomendados para la J2:</b> <b>Betis–Real Sociedad</b> (33%) y <b>Valencia–Celta</b> (31%). Ninguno de la J2 es grande-vs-grande, así que los 3 partidos de Barça/Madrid/Atleti quedan fuera (todos ellos son un grande contra un no-grande). Apuesta el primero a $100; si cae, cobras (~$320) y vas por el segundo a $100; si el primero falla, doblas a $200 en el segundo, y así.
+  </div>
+
+  <h2 class="sec">📐 Cómo se ve la progresión (ejemplo)</h2>
+  <table>
+    <thead><tr><th>Paso</th><th>Apuesta</th><th class="n">Stake</th><th>Si empata (gana)</th><th>Si no empata</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Empate partido A</td><td class="n">$100</td><td class="pos">+$220 → reinicia a $100</td><td class="neg">dobla → $200</td></tr>
+      <tr><td>2</td><td>Empate partido B</td><td class="n">$200</td><td class="pos">+$240 neto → reinicia</td><td class="neg">dobla → $400</td></tr>
+      <tr><td>3</td><td>Empate partido C</td><td class="n">$400</td><td class="pos">recupera todo +$100 → reinicia</td><td class="neg">dobla → $800</td></tr>
+      <tr><td>…</td><td>…</td><td class="n">$800→$1,600…</td><td class="pos">un acierto borra la racha</td><td class="neg">sigue doblando</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mut);font-size:13px">A cuota 3.2 cada empate cobrado recupera lo perdido y deja ganancia. El objetivo por jornada es cerrar <b>2 empates</b>; si en una jornada no aparecen, la progresión se lleva a la siguiente.</p>
+
+  <footer>
+    Simulación de seguimiento de tu estrategia personal. Cuota de empate modelada 3.20 (varía por partido). Probabilidades de empate estimadas por modelo (paridad + ADN empatador 2025-26 + perfil goleador). Distinta de la sección de "empatadores natos" (equipos fijos) — esta elige 2 partidos por jornada con filtro anti-grandes.<br><br>
+    <b>Juego responsable.</b> La Martingala NO garantiza ganancias y puede provocar pérdidas rápidas si toca una racha larga. Ninguna apuesta es segura. Apuesta solo lo que puedas permitirte perder.
+  </footer>
+</div>
+</body>
+</html>
