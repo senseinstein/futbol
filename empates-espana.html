@@ -36,12 +36,12 @@
 <div class="wrap">
   <a class="back" href="empates.html">← Estrategia de empates</a> &nbsp;·&nbsp; <a class="back" href="index.html">Todas las ligas</a>
   <h1>🇪🇸 Empate por jornada — España</h1>
-  <div class="sub">LaLiga 2026-27 · 2 empates por jornada · Martingala de una línea · base $100</div>
+  <div class="sub">LaLiga 2026-27 · recorrer todos los partidos en orden hasta 2 empates · Martingala de una línea · base $100</div>
 
   <div class="box">
     <h3>📋 Tu estrategia (como la definiste)</h3>
-    Cada jornada busco <b>2 empates</b>, apostando <b>un partido a la vez</b>. Empiezo en <b>$100</b> al empate; si <b>no</b> cae, en el siguiente partido <b>doblo</b>; cuando <b>gano</b>, reinicio a $100 y busco el <b>segundo</b> empate de la jornada igual. La progresión (el doblez) <b>se arrastra</b> entre partidos y entre jornadas — solo se reinicia al ganar. Cuota de empate típica ≈ <b>3.20</b>.<br><br>
-    <b>Filtro anti-grandes:</b> <b>no</b> se juegan partidos de <b>Barcelona, Real Madrid ni Atlético de Madrid</b>… salvo cuando <b>juegan entre sí</b> (ahí el empate vuelve a ser probable). Se eligen los 2 partidos <b>más parejos / de más ADN empatador / de menos goles</b> de la jornada.
+    Cada jornada <b>recorro TODOS los partidos en orden de fecha y hora</b>, apostando el empate <b>uno a la vez</b>, hasta que caigan <b>2 empates</b> — ahí paro esa jornada. Empiezo en <b>$100</b>; si un partido <b>no</b> empata, en el <b>siguiente</b> (el que se juega después) <b>doblo</b>; cuando <b>empata</b>, cobro y <b>reinicio a $100</b> para seguir buscando el 2º. La progresión (el doblez) <b>se arrastra</b> partido tras partido y de una jornada a la siguiente — solo se reinicia al ganar. Cuota de empate típica ≈ <b>3.20</b>.<br><br>
+    <b>Filtro anti-grandes:</b> <b>se saltan</b> los partidos de <b>Barcelona, Real Madrid y Atlético de Madrid</b> (no se apuestan) … salvo cuando <b>juegan entre sí</b> (ahí el empate vuelve a ser probable y sí entran). En la secuencia por horario, esos partidos simplemente se brincan y se pasa al siguiente.
   </div>
 
   <div class="box good">
@@ -70,25 +70,26 @@
   </table>
   <p style="color:var(--mut);font-size:13px">La estrategia arranca en la J2 (la J1 estuvo fragmentada). Tras cada jornada actualizo esta tabla con lo que cobraste y cómo quedó la progresión.</p>
 
-  <h2 class="sec">🎯 Candidatos de la Jornada 2 (elige 2)</h2>
-  <p style="color:var(--mut);font-size:13px">Partidos ordenados de <b>más</b> a <b>menos</b> propensos al empate (los de arriba son "los menos probables de tener un ganador claro"). En <span style="color:#ff9a90">rojo</span> los excluidos por el filtro anti-grandes. Recomendados en <span style="color:#5ddc86">verde</span>.</p>
+  <h2 class="sec">🗓️ Jornada 2 — orden de juego (fecha y hora)</h2>
+  <p style="color:var(--mut);font-size:13px">Todos los partidos <b>en el orden en que se juegan</b>. Recorres la lista de arriba hacia abajo apostando el empate; los <span style="color:#ff9a90">excluidos</span> (grandes vs no-grande) se <b>saltan</b>. Paras cuando cobres <b>2 empates</b>. "Prob. empate" ayuda a saber cuáles tienen más chance, pero el orden de apuesta lo marca el horario.</p>
   <table>
-    <thead><tr><th>#</th><th>Partido</th><th class="n">Prob. empate</th><th>Por qué</th></tr></thead>
+    <thead><tr><th class="n">#</th><th>Fecha y hora</th><th>Partido</th><th class="n">Prob. empate</th><th>Estado</th></tr></thead>
     <tbody>
-      <tr class="pick"><td>1</td><td><b>Betis vs Real Sociedad</b> <span class="tag t-star">TOP</span></td><td class="n">33%</td><td>Nº1 y nº3 más empatadores de LaLiga (15 y 13 E). Parejos y ambos debutan.</td></tr>
-      <tr class="pick"><td>2</td><td><b>Valencia vs Celta</b> <span class="tag t-in">ELEGIBLE</span></td><td class="n">31%</td><td>Dos empatadores (10 y 12 E), muy parejos, ambos debutan.</td></tr>
-      <tr><td>3</td><td>Rayo vs Alavés <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Rayo 14 E, Alavés 10 E; partido cerrado y de pocos goles.</td></tr>
-      <tr><td>4</td><td>Málaga vs Deportivo <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Duelo de ascendidos muy parejo, pero con poca referencia (incierto).</td></tr>
-      <tr><td>5</td><td>Getafe vs Racing <span class="tag t-in">ELEGIBLE</span></td><td class="n">30%</td><td>Sello Bordalás de pocos goles; Getafe algo favorito.</td></tr>
-      <tr><td>6</td><td>Athletic vs Sevilla <span class="tag t-in">ELEGIBLE</span></td><td class="n">27%</td><td>Athletic favorito en San Mamés aunque debuta.</td></tr>
-      <tr><td>7</td><td>Osasuna vs Levante <span class="tag t-in">ELEGIBLE</span></td><td class="n">25%</td><td>Osasuna claro favorito en El Sadar → menos empate.</td></tr>
-      <tr class="excl"><td>—</td><td>Elche vs <b>Barcelona</b> <span class="tag t-out">EXCLUIDO</span></td><td class="n">24%</td><td>Barça (grande) vs no-grande → fuera del filtro.</td></tr>
-      <tr class="excl"><td>—</td><td>Espanyol vs <b>Real Madrid</b> <span class="tag t-out">EXCLUIDO</span></td><td class="n">26%</td><td>Real Madrid (grande) vs no-grande → fuera del filtro.</td></tr>
-      <tr class="excl"><td>—</td><td><b>Atlético</b> vs Villarreal <span class="tag t-out">EXCLUIDO</span></td><td class="n">27%</td><td>Atlético (grande) vs no-grande → fuera del filtro.</td></tr>
+      <tr><td class="n">1</td><td>Jue 20 · 21:00</td><td>Rayo vs Alavés</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="pick"><td class="n">2</td><td>Vie 21 · 21:00</td><td><b>Betis vs Real Sociedad</b></td><td class="n">33%</td><td><span class="tag t-star">APOSTAR · TOP</span></td></tr>
+      <tr><td class="n">3</td><td>Sáb 22 · 17:00</td><td>Athletic vs Sevilla</td><td class="n">27%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="pick"><td class="n">4</td><td>Sáb 22 · 19:30</td><td><b>Valencia vs Celta</b></td><td class="n">31%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td>Sáb 22 · 21:30</td><td>Espanyol vs <b>Real Madrid</b></td><td class="n">26%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td>Dom 23 · 17:00</td><td><b>Atlético</b> vs Villarreal</td><td class="n">27%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr><td class="n">5</td><td>Dom 23 · 19:30</td><td>Getafe vs Racing</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td>Dom 23 · 21:30</td><td>Elche vs <b>Barcelona</b></td><td class="n">24%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr><td class="n">6</td><td>Lun 24 · 19:30</td><td>Osasuna vs Levante</td><td class="n">25%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr><td class="n">7</td><td>Lun 24 · 21:30</td><td>Málaga vs Deportivo</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
     </tbody>
   </table>
+  <p style="color:var(--mut);font-size:12.5px">Horarios en hora de España (CEST). ⚠️ Algunas horas no están 100% confirmadas por LaLiga al cierre; verifica el día previo. 3 partidos se saltan por el filtro (los 3 son grande-vs-no-grande; no hay grande-vs-grande esta jornada).</p>
   <div class="box" style="font-size:13.5px">
-    <b>Mis 2 recomendados para la J2:</b> <b>Betis–Real Sociedad</b> (33%) y <b>Valencia–Celta</b> (31%). Ninguno de la J2 es grande-vs-grande, así que los 3 partidos de Barça/Madrid/Atleti quedan fuera (todos ellos son un grande contra un no-grande). Apuesta el primero a $100; si cae, cobras (~$320) y vas por el segundo a $100; si el primero falla, doblas a $200 en el segundo, y así.
+    <b>Cómo jugar la J2:</b> arrancas el <b>jueves con Rayo–Alavés</b> a $100. Si empata, cobras (~$320) y reinicias; si no, el <b>viernes doblas a $200 en Betis–Real Sociedad</b> (tu mejor chance, 33%), y así bajando por la lista <b>saltándote los 3 grandes</b>, hasta cerrar <b>2 empates</b>. Con 7 partidos elegibles y ~30% cada uno, lo normal es cobrar los 2 sin llegar muy abajo en la progresión.
   </div>
 
   <h2 class="sec">📐 Cómo se ve la progresión (ejemplo)</h2>
@@ -104,7 +105,7 @@
   <p style="color:var(--mut);font-size:13px">A cuota 3.2 cada empate cobrado recupera lo perdido y deja ganancia. El objetivo por jornada es cerrar <b>2 empates</b>; si en una jornada no aparecen, la progresión se lleva a la siguiente.</p>
 
   <footer>
-    Simulación de seguimiento de tu estrategia personal. Cuota de empate modelada 3.20 (varía por partido). Probabilidades de empate estimadas por modelo (paridad + ADN empatador 2025-26 + perfil goleador). Distinta de la sección de "empatadores natos" (equipos fijos) — esta elige 2 partidos por jornada con filtro anti-grandes.<br><br>
+    Simulación de seguimiento de tu estrategia personal. Cuota de empate modelada 3.20 (varía por partido). Probabilidades de empate estimadas por modelo (paridad + ADN empatador 2025-26 + perfil goleador). Distinta de la sección de "empatadores natos" (equipos fijos) — esta recorre todos los partidos en orden de fecha/hora hasta cobrar 2 empates, con filtro anti-grandes.<br><br>
     <b>Juego responsable.</b> La Martingala NO garantiza ganancias y puede provocar pérdidas rápidas si toca una racha larga. Ninguna apuesta es segura. Apuesta solo lo que puedas permitirte perder.
   </footer>
 </div>
