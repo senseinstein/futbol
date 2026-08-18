@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Liga MX · Análisis de Valor · Jornadas</title>
+<title>LaLiga · Análisis de Valor · Jornadas</title>
 <style>
   :root{--bg:#0d1117;--panel:#161b22;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--accent:#3fb950;--accent2:#58a6ff;}
   *{box-sizing:border-box}
@@ -33,8 +33,8 @@
 <body>
 <div class="wrap">
   <a class="back" href="index.html">← Todas las ligas</a>
-  <h1><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#1a7a3a;color:#fff;font-size:11px;font-weight:800;vertical-align:middle;margin-right:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)">MX</span>Liga MX — Análisis de Valor</h1>
-  <div class="sub">México · Apertura 2026 · probabilidades vs. cuotas · value bets por jornada</div>
+  <h1><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#c8102e;color:#fff;font-size:11px;font-weight:800;vertical-align:middle;margin-right:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)">ESP</span>LaLiga — Análisis de Valor</h1>
+  <div class="sub">España · Temporada 2026-27 · probabilidades vs. cuotas · value bets por jornada</div>
   <div class="intro">
     Análisis por jornada: ganadores, marcadores probables, empates más probables y las mejores apuestas
     (goles, tarjetas, córners, hándicap) con riesgo y stake. Enfoque en <b>valor esperado positivo a largo plazo</b>,
@@ -47,60 +47,41 @@
     <a href="https://claude.ai" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;white-space:nowrap"> · Pedir actualización →</a>
   </div>
   <script>
-    // Fecha de cierre de la jornada publicada más reciente (día siguiente, 00:00 hora de México).
-    // Al preparar cada nueva jornada se actualiza esta fecha.
-    var finJornada = new Date('2026-08-24T00:00:00-06:00'); // fin Jornada 5
+    var finJornada = new Date('2026-08-25T00:00:00+02:00'); // fin Jornada 2
     if (new Date() >= finJornada) {
       document.getElementById('update-banner').style.display = 'block';
     }
   </script>
 
-  <h2>Apertura 2026</h2>
-  <a class="card" href="apertura2026-j5.html">
+  <div class="intro" style="background:#241c10;border-color:#4a3a13;color:#e3c98e">
+    <b>⚠️ Calendario atípico al arranque.</b> Por el descanso a los mundialistas (España campeona del Mundial 2026), la <b>Jornada 1 quedó fragmentada</b>: solo se jugaron 5 de 10 partidos; Barça, Real Madrid, Atlético, Valencia, Betis, Real Sociedad, Celta, Osasuna, Athletic y Málaga tienen su J1 aplazada (19–27 ago) y <b>debutan en la J2</b>. Empezamos el seguimiento del sitio en la <b>J2</b> (jornada completa).
+  </div>
+
+  <h2>Temporada 2026-27</h2>
+  <a class="card" href="laliga2627-j2.html">
     <div>
-      <div class="t">Jornada 5 <span class="badge">NUEVO</span></div>
-      <div class="d">21–23 ago 2026 · 9 partidos · parlays + quiniela</div>
+      <div class="t">Jornada 2 <span class="badge">NUEVO</span></div>
+      <div class="d">20–24 ago 2026 · 10 partidos · parlays + quiniela</div>
     </div>
     <div class="go">Ver análisis →</div>
   </a>
-  <a class="card" href="apertura2026-j4.html">
+  <a class="card" href="laliga2627-j1.html">
     <div>
-      <div class="t">Jornada 4 <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1c2330;color:#9aa7b8;margin-left:6px">FINALIZADA</span></div>
-      <div class="d">15–17 ago 2026 · resultados vs. pronóstico · ganador 5/9 · 1er parlay ganador ✅</div>
+      <div class="t">Jornada 1 <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1c2330;color:#9aa7b8;margin-left:6px">PARCIAL</span></div>
+      <div class="d">15–27 ago 2026 · resultados (5/10 jugados) · referencia</div>
     </div>
-    <div class="go">Ver análisis →</div>
-  </a>
-  <a class="card" href="apertura2026-j3.html">
-    <div>
-      <div class="t">Jornada 3 <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1c2330;color:#9aa7b8;margin-left:6px">FINALIZADA</span></div>
-      <div class="d">31 jul – 2 ago 2026 · resultados vs. pronóstico · ganador 4/9</div>
-    </div>
-    <div class="go">Ver análisis →</div>
-  </a>
-  <a class="card" href="apertura2026-j2.html">
-    <div>
-      <div class="t">Jornada 2 <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1c2330;color:#9aa7b8;margin-left:6px">FINALIZADA</span></div>
-      <div class="d">21–26 jul 2026 · resultados vs. pronóstico · ganador 3/9</div>
-    </div>
-    <div class="go">Ver análisis →</div>
-  </a>
-  <a class="card" href="apertura2026-j1.html">
-    <div>
-      <div class="t">Jornada 1 <span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#1c2330;color:#9aa7b8;margin-left:6px">FINALIZADA</span></div>
-      <div class="d">16–18 jul 2026 · resultados vs. pronóstico · ganador 5/9</div>
-    </div>
-    <div class="go">Ver análisis →</div>
+    <div class="go">Ver resultados →</div>
   </a>
   <div class="card soon">
     <div>
-      <div class="t">Jornada 6</div>
+      <div class="t">Jornada 3</div>
       <div class="d">Próximamente</div>
     </div>
     <div class="go">—</div>
   </div>
 
   <footer>
-    Actualizado cada jornada. Fuentes: ESPN, Mediotiempo, Récord, TUDN, Squawka, Dimers y casas de apuestas.
+    Actualizado cada jornada. Fuentes: LaLiga oficial, Marca, AS, ESPN, BeSoccer, Flashscore y casas de apuestas.
     Las probabilidades son estimaciones; ninguna apuesta es segura.
   </footer>
 </div>
