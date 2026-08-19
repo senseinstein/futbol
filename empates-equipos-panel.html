@@ -5,33 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel — Estrategia de Empates por Equipos (multi-liga)</title>
 <style>
-  :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--accent:#3fb950;--accent2:#58a6ff;--warn:#e3b341;--bad:#f85149;}
+  :root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--accent:#3fb950;--accent2:#58a6ff;--warn:#e3b341;--bad:#f85149;--gold:#e3b341;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;font-size:15px}
-  .wrap{max-width:1040px;margin:0 auto;padding:26px 18px 60px}
+  .wrap{max-width:1060px;margin:0 auto;padding:26px 18px 60px}
   h1{font-size:24px;margin:0 0 4px} .sub{color:var(--mut);font-size:14px}
   .back{display:inline-block;margin:8px 0 0;color:var(--accent2);font-size:13px;text-decoration:none}
   .box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;font-size:14px}
   .warn{background:#241c10;border-color:#4a3a13;color:#e3c98e}
   .info{background:#0f1f2e;border-color:#1f4a6b}
+  .imanbox{background:#1a1508;border:1px solid #4a3a13}
   h2.sec{font-size:18px;margin:28px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}
   .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:14px 0}
   .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
   .tile .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
-  .tile .v{font-size:23px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
+  .tile .v{font-size:22px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums}
   .pos{color:var(--accent)} .neg{color:var(--bad)}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
-  th,td{padding:7px 8px;border-bottom:1px solid #232a36;text-align:left}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  th,td{padding:6px 7px;border-bottom:1px solid #232a36;text-align:left;vertical-align:top}
   th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mut)}
   td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   .lg{margin:18px 0 2px;font-size:15px;font-weight:700}
   .flag{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:9px;font-weight:800;color:#fff;margin-right:7px;vertical-align:middle}
   .es{background:#c8102e}.en{background:#3d195b}.it{background:#0f74b8}.de{background:#b3000c}
-  .bar{height:9px;background:#0d1117;border-radius:6px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle}
+  .bar{height:9px;background:#0d1117;border-radius:6px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle}
   .bar span{display:block;height:100%;background:var(--accent)}
   .chip{display:inline-block;font-size:10px;font-weight:700;padding:1px 7px;border-radius:5px}
-  .c-base{background:#12331d;color:#5ddc86}.c-run{background:#33290f;color:#e3b341}.c-done{background:#0f2942;color:#7fb8ff}
-  .low{color:var(--bad);font-weight:700}
+  .c-base{background:#12331d;color:#5ddc86}
+  .iman{color:var(--gold);font-size:12px;font-variant-numeric:tabular-nums}
+  .star{color:var(--gold)} .ext{color:#7fb8ff}
   footer{color:var(--mut);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
   a{color:var(--accent2)}
 </style>
@@ -40,84 +42,116 @@
 <div class="wrap">
   <a class="back" href="index.html">← Todas las ligas</a> &nbsp;·&nbsp; <a class="back" href="empates.html">Estrategias de empate</a>
   <h1>📊 Panel — Empates por Equipos (multi-liga)</h1>
-  <div class="sub">LaLiga · Premier · Serie A · Bundesliga · Martingala al empate por equipo · meta 5 empates · <b>roster 2026-27</b></div>
+  <div class="sub">LaLiga · Premier · Serie A · Bundesliga · Martingala al empate por equipo · temporada 2026-27</div>
 
   <div class="box info">
-    <b>¿Cómo funciona este panel?</b> Es el <b>cerebro</b> de la estrategia: te dice <b>qué equipo apostar y a cuánto</b> cada jornada, y lleva el balance. <b>Las apuestas las colocas tú</b> en tu casa (el panel no mueve dinero ni entra a tu cuenta). Cada lunes se actualiza con los resultados: si un equipo <b>empata</b>, cobra y su apuesta reinicia a la base; si <b>no</b>, su apuesta sube ×1.5 (o ×2 en LaLiga). Cada equipo se retira al llegar a <b>5 empates</b>.
+    <b>Cómo funciona:</b> el panel te dice <b>qué equipo apostar y a cuánto</b> cada jornada y lleva el balance; <b>las apuestas las colocas tú</b> (no mueve dinero). Empata → cobra y reinicia a la base; no empata → la apuesta sube (×2 LaLiga, ×1.5 el resto). Cada equipo se retira al llegar a <b>5 empates</b>.
   </div>
 
   <div class="box warn">
-    <b>Ajustes aplicados:</b> se cambió <b>Getafe → Elche</b> (13 empates) en LaLiga y <b>Fulham → Bournemouth</b> (18 empates) en Premier, por su bajo registro de empates. &nbsp;·&nbsp; <b>Regla nueva (España):</b> cuando un equipo tuyo juegue contra <b>Barcelona o Real Madrid</b>, se <b>omite</b> la apuesta esa jornada (el empate es muy improbable) — la apuesta del equipo <b>no</b> sube, se retoma la siguiente. &nbsp;·&nbsp; <b>Abandono:</b> si la apuesta superaría <b>~$15,000</b> (racha ~12), se abandona ese equipo por la temporada.
+    <b>Reglas de seguridad:</b> <b>meta 5 empates</b> (te retira temprano y esquiva rachas tardías) · <b>stop loss a 8 pasos</b> (si un equipo encadena 8 sin empatar, aceptas la pérdida y reinicias) · <b>filtro Barça/Madrid</b> en LaLiga (se omite ese partido) · <b>abandono</b> si la apuesta superara ~$15,000. Las tres capas juntas contienen incluso el peor año histórico (rachas de 13-14).
   </div>
 
-  <h2 class="sec">⚙️ Roster 2026-27 · seleccionado por tabla final 2025-26</h2>
+  <h2 class="sec">⚙️ Configuración</h2>
   <table>
-    <thead><tr><th>Liga</th><th>Equipos (empates 2025-26)</th><th>Selección</th><th class="n">Mult.</th><th class="n">Base</th></tr></thead>
+    <thead><tr><th>Liga</th><th>Equipos (empates 25-26)</th><th class="n">Mult.</th><th class="n">Base</th><th class="n">Meta</th><th class="n">Stop</th></tr></thead>
     <tbody>
-      <tr><td><span class="flag es">ESP</span>LaLiga</td><td>Celta (12), <b>Elche (13)</b>, Rayo (14), Valencia (10), R. Sociedad (13), Espanyol (10)</td><td>6-11 + swap</td><td class="n">×2</td><td class="n">$100</td></tr>
-      <tr><td><span class="flag en">ENG</span>Premier</td><td>Brighton (11), Brentford (11), Chelsea (10), <b>Bournemouth (18)</b></td><td>8-11 + swap</td><td class="n">×1.5</td><td class="n">$200</td></tr>
-      <tr><td><span class="flag it">ITA</span>Serie A</td><td>Bologna (8), Lazio (12), Udinese (8), Sassuolo (7)</td><td>puestos 8-11</td><td class="n">×1.5</td><td class="n">$200</td></tr>
-      <tr><td><span class="flag de">GER</span>Bundesliga</td><td>Frankfurt (11), Augsburg (7), Mainz (10), Union Berlin (9)</td><td>puestos 8-11</td><td class="n">×1.5</td><td class="n">$200</td></tr>
+      <tr><td><span class="flag es">ESP</span>LaLiga</td><td>Betis (15), Sevilla (7), Alavés (10), Real Sociedad (13), Rayo (14)</td><td class="n">×2</td><td class="n">$100</td><td class="n">5</td><td class="n">8</td></tr>
+      <tr><td><span class="flag en">ENG</span>Premier</td><td>Brighton (11), Brentford (11), Chelsea (10), Bournemouth (18)</td><td class="n">×1.5</td><td class="n">$200</td><td class="n">5</td><td class="n">8</td></tr>
+      <tr><td><span class="flag it">ITA</span>Serie A</td><td>Bologna (8), Lazio (12), Udinese (8), Sassuolo (7)</td><td class="n">×1.5</td><td class="n">$200</td><td class="n">5</td><td class="n">8</td></tr>
+      <tr><td><span class="flag de">GER</span>Bundesliga</td><td>Frankfurt (11), Augsburg (7), Mainz (10), Union Berlin (9)</td><td class="n">×1.5</td><td class="n">$200</td><td class="n">5</td><td class="n">8</td></tr>
     </tbody>
   </table>
-  <p style="color:var(--mut);font-size:12.5px">Entre paréntesis, los empates que tuvo cada equipo en la temporada anterior (2025-26) — cuanto más alto, más fiable para esta estrategia. Cuota de empate modelada ≈ 3.20.</p>
 
-  <h2 class="sec">📈 Seguimiento en vivo — Temporada 2026-27</h2>
+  <h2 class="sec">📈 Seguimiento en vivo 2026-27</h2>
   <div class="tiles">
     <div class="tile"><div class="k">Balance temporada</div><div class="v">$0</div></div>
-    <div class="tile"><div class="k">Empates logrados</div><div class="v">0 / 90</div></div>
+    <div class="tile"><div class="k">Empates logrados</div><div class="v">0 / 85</div></div>
     <div class="tile"><div class="k">Bank comprometido</div><div class="v">$0</div></div>
     <div class="tile"><div class="k">Estado</div><div class="v" style="font-size:18px;color:var(--warn)">Esperando J1</div></div>
   </div>
 
-  <div class="lg"><span class="flag es">ESP</span>LaLiga <span style="color:var(--mut);font-weight:400;font-size:13px">· base $100 · ×2</span></div>
+  <div class="lg"><span class="flag es">ESP</span>LaLiga <span style="color:var(--mut);font-weight:400;font-size:13px">· ×2 · base $100</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp. 25-26</th><th class="n">Empates</th><th>Progreso</th><th class="n">Racha</th><th class="n">Apuesta próx.</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th><th>⭐ Partidos imán (jornadas vs tus equipos)</th></tr></thead>
     <tbody>
-      <tr><td>Celta</td><td class="n">12</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Elche</td><td class="n">13</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Rayo Vallecano</td><td class="n">14</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Valencia</td><td class="n">10</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Real Sociedad</td><td class="n">13</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Espanyol</td><td class="n">10</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Betis</td><td class="n">15</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J13, J14, J18, J23, J24, J31, J37</td></tr>
+      <tr><td>Sevilla</td><td class="n">7</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J1, J12, J13, J14, J20, J23, J27, J28</td></tr>
+      <tr><td>Alavés</td><td class="n">10</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J12, J18, J19, J28, J29, J31, J32</td></tr>
+      <tr><td>Real Sociedad</td><td class="n">13</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J12, J14, J19, J24, J27, J29, J31</td></tr>
+      <tr><td>Rayo Vallecano</td><td class="n">14</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J1, J2, J12, J14, J20, J31, J32, J37</td></tr>
     </tbody>
   </table>
 
-  <div class="lg"><span class="flag en">ENG</span>Premier <span style="color:var(--mut);font-weight:400;font-size:13px">· base $200 · ×1.5</span></div>
+  <h2 class="sec">🎯 Calendario de partidos imán 2026-27 (LaLiga)</h2>
+  <div class="box imanbox">
+    <b>Qué es esto:</b> los partidos con <b>mayor probabilidad histórica de empate</b> de tus 5 equipos, mapeados al calendario real 2026-27 — para verlos desde el inicio y no perder la oportunidad. Dos niveles: <span class="star">⭐ derbis internos</span> (dos de tus equipos entre sí — máxima probabilidad y, si empatan, <b>ganas las dos apuestas</b>) y <span class="ext">🔵 imanes externos</span> (Celta, Athletic, Valencia, Getafe, Villarreal, con quienes históricamente empatan mucho).
+  </div>
+
+  <div class="lg star">⭐ Derbis internos — dos de tus equipos (20 partidos, doble premio si empatan)</div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp. 25-26</th><th class="n">Empates</th><th>Progreso</th><th class="n">Racha</th><th class="n">Apuesta próx.</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <thead><tr><th class="n">Jornada</th><th>Partido</th><th class="n">Jornada</th><th>Partido</th></tr></thead>
     <tbody>
-      <tr><td>Brighton</td><td class="n">11</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Brentford</td><td class="n">11</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Chelsea</td><td class="n">10</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Bournemouth</td><td class="n">18</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td class="n">J1</td><td>Rayo vs Sevilla</td><td class="n">J20</td><td>Rayo vs Sevilla</td></tr>
+      <tr><td class="n">J2</td><td>Alavés vs Rayo · Betis vs R. Sociedad</td><td class="n">J23</td><td>Betis vs Sevilla</td></tr>
+      <tr><td class="n">J12</td><td>Alavés vs Sevilla · Rayo vs R. Sociedad</td><td class="n">J24</td><td>Betis vs R. Sociedad</td></tr>
+      <tr><td class="n">J13</td><td>Betis vs Sevilla <span style="color:var(--mut)">(Gran Derbi)</span></td><td class="n">J27</td><td>R. Sociedad vs Sevilla</td></tr>
+      <tr><td class="n">J14</td><td>Betis vs Rayo · R. Sociedad vs Sevilla</td><td class="n">J28</td><td>Alavés vs Sevilla</td></tr>
+      <tr><td class="n">J18</td><td>Alavés vs Betis</td><td class="n">J29</td><td>Alavés vs R. Sociedad</td></tr>
+      <tr><td class="n">J19</td><td>Alavés vs R. Sociedad</td><td class="n">J31</td><td>Alavés vs Betis · Rayo vs R. Sociedad</td></tr>
+      <tr><td class="n"></td><td></td><td class="n">J32</td><td>Alavés vs Rayo</td></tr>
+      <tr><td class="n"></td><td></td><td class="n">J37</td><td>Betis vs Rayo</td></tr>
     </tbody>
   </table>
 
-  <div class="lg"><span class="flag it">ITA</span>Serie A <span style="color:var(--mut);font-weight:400;font-size:13px">· base $200 · ×1.5</span></div>
+  <div class="lg ext">🔵 Imanes externos por equipo (Celta · Athletic · Valencia · Getafe · Villarreal)</div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp. 25-26</th><th class="n">Empates</th><th>Progreso</th><th class="n">Racha</th><th class="n">Apuesta próx.</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <thead><tr><th>Equipo</th><th>Jornadas · rival</th></tr></thead>
     <tbody>
-      <tr><td>Bologna</td><td class="n">8</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Lazio</td><td class="n">12</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Udinese</td><td class="n">8</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Sassuolo</td><td class="n">7</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Betis</td><td class="iman ext">J1·Valencia, J5·Villarreal, J6·Getafe, J10·Celta, J17·Athletic, J26·Villarreal, J30·Celta, J32·Athletic, J33·Getafe, J34·Valencia</td></tr>
+      <tr><td>Sevilla</td><td class="iman ext">J2·Athletic, J5·Valencia, J11·Getafe, J18·Villarreal, J19·Celta, J21·Valencia, J22·Athletic, J34·Celta, J36·Villarreal, J37·Getafe</td></tr>
+      <tr><td>Alavés</td><td class="iman ext">J1·Getafe, J3·Villarreal, J6·Valencia, J7·Athletic, J9·Celta, J20·Villarreal, J23·Celta, J24·Valencia, J26·Getafe, J27·Athletic</td></tr>
+      <tr><td>Real Sociedad</td><td class="iman ext">J6·Celta, J7·Valencia, J11·Athletic, J15·Villarreal, J16·Getafe, J28·Getafe, J30·Valencia, J34·Athletic, J37·Celta, J38·Villarreal</td></tr>
+      <tr><td>Rayo Vallecano</td><td class="iman ext">J8·Athletic, J9·Getafe, J11·Celta, J13·Valencia, J16·Villarreal, J24·Celta, J25·Getafe, J33·Valencia, J34·Villarreal, J38·Athletic</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--mut);font-size:12px">Nota: Girona y Mallorca descendieron, no están en LaLiga 2026-27. Barça y Real Madrid se omiten por el filtro. Esto es scouting histórico (muestra chica por cruce), no garantía — indica dónde tienes más viento a favor.</p>
+
+  <div class="lg"><span class="flag en">ENG</span>Premier <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
+  <table>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <tbody>
+      <tr><td>Brighton</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Brentford</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Chelsea</td><td class="n">10</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Bournemouth</td><td class="n">18</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
     </tbody>
   </table>
 
-  <div class="lg"><span class="flag de">GER</span>Bundesliga <span style="color:var(--mut);font-weight:400;font-size:13px">· base $200 · ×1.5</span></div>
+  <div class="lg"><span class="flag it">ITA</span>Serie A <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp. 25-26</th><th class="n">Empates</th><th>Progreso</th><th class="n">Racha</th><th class="n">Apuesta próx.</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
     <tbody>
-      <tr><td>E. Frankfurt</td><td class="n">11</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>FC Augsburg</td><td class="n">7</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Mainz 05</td><td class="n">10</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Union Berlin</td><td class="n">9</td><td class="n">0/5</td><td><span class="bar"><span style="width:0%"></span></span></td><td class="n">0</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Bologna</td><td class="n">8</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Lazio</td><td class="n">12</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Udinese</td><td class="n">8</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Sassuolo</td><td class="n">7</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+    </tbody>
+  </table>
+
+  <div class="lg"><span class="flag de">GER</span>Bundesliga <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
+  <table>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <tbody>
+      <tr><td>E. Frankfurt</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>FC Augsburg</td><td class="n">7</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Mainz 05</td><td class="n">10</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
+      <tr><td>Union Berlin</td><td class="n">9</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
     </tbody>
   </table>
 
   <footer>
-    Panel de seguimiento. Las apuestas las ejecuta el usuario; este panel solo calcula señales y balance. Roster 2026-27 seleccionado por la tabla final 2025-26. Cuota de empate modelada 3.20.<br><br>
+    Panel de seguimiento. Las apuestas las ejecuta el usuario; el panel solo calcula señales y balance. Calendario 2026-27 verificado (ESPN, BeSoccer, unionrayo, laliga). Partidos imán = análisis histórico de empates 5 temporadas; heurística de scouting, no garantía.<br><br>
     <b>Juego responsable.</b> La Martingala NO garantiza ganancias y puede provocar pérdidas rápidas. Ninguna apuesta es segura. Apuesta solo lo que puedas permitirte perder.
   </footer>
 </div>
