@@ -53,7 +53,7 @@
   <div class="sub">4 ligas · 17 equipos · Martingala por equipo · meta 5 empates · stop loss al 8º · momios editables (reales al abrir)</div>
 
   <div class="note">
-    <b>Cómo funciona:</b> cada equipo lleva su propia Martingala. En <b>⏭️ Próximas apuestas</b> ves, ordenado por fecha, el <b>siguiente partido de cada equipo y cuánto toca apostar</b> — así no se te pasa ninguno (saltarte uno rompe la progresión). Cuando se juega, tocas <b>✅ Empató</b> o <b>❌ No</b> y todo se recalcula: monto siguiente, balance y registro. Se guarda en este dispositivo. · La estrategia de <b>empate por jornada de LaLiga</b> vive en su propia página: <a class="lnk" href="empates-espana.html">abrir →</a>
+    <b>Cómo funciona:</b> cada equipo lleva su propia Martingala. En <b>⏭️ Próximas apuestas</b> ves, ordenado por fecha, el <b>siguiente partido pendiente de registrar de cada equipo</b> (incluye los ya jugados que aún no marcas) y cuánto toca apostar. Como la progresión es <b>secuencial</b>, para registrar el de hoy primero marca los anteriores. <b>Para registrar partidos ya concluidos:</b> abajo en <b>🏆 Estado por liga</b>, toca el nombre de un equipo para <b>desplegar TODOS sus partidos</b> y marcar cualquiera (E / No / ↺). Se guarda en este dispositivo. · La estrategia de <b>empate por jornada de LaLiga</b> vive en su propia página: <a class="lnk" href="empates-espana.html">abrir →</a>
   </div>
 
   <div class="tools">
@@ -95,6 +95,7 @@ var KEY='master_empatadores_v1';
 var st={bank:20000,r:{},o:{}};
 try{var raw=localStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.r) st=p;}}catch(e){}
 if(!st.r)st.r={}; if(!st.o)st.o={};
+var EXP={};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function money(x){var n=Math.round(x);return (n<0?'-$':'$')+Math.abs(n).toLocaleString('en-US');}
 function oddsFor(team,j){ if(st.o[team]&&st.o[team][j]!=null) return parseFloat(st.o[team][j]); if(ODDS0[team+'|'+j]!=null) return ODDS0[team+'|'+j]; return DEF_ODDS; }
@@ -115,8 +116,38 @@ function compute(team){
   }
   return {pnl:pnl,draws:draws,nextStake:(draws>=META?null:stake),nextMatch:null,retired:draws>=META,log:log,stake:stake};
 }
+// full walk: stake per match up to first unmarked; rows after a gap are pending
+function computeFull(team){
+  var lg=T2L[team], cfg=LEAGUE[lg];
+  var stake=cfg.base, draws=0, steps=0, gap=false, rows=[];
+  FIX[team].forEach(function(f){
+    var res=st.r[team]?st.r[team][f.j]:null;
+    if(draws>=META){ rows.push({f:f,res:res,stake:null,state:'retired'}); return; }
+    if(gap){ rows.push({f:f,res:res,stake:null,state:'pending'}); return; }
+    if(!res){ rows.push({f:f,res:null,stake:stake,state:'next'}); gap=true; return; }
+    var od=oddsFor(team,f.j);
+    if(res==='E'){ rows.push({f:f,res:'E',stake:stake,od:od,pnl:stake*(od-1),state:'done'}); draws++; stake=cfg.base; steps=0; }
+    else { rows.push({f:f,res:'X',stake:stake,od:od,pnl:-stake,state:'done'}); steps++; if(steps>=STOP){stake=cfg.base;steps=0;} else stake=Math.round(stake*cfg.mult); }
+  });
+  return rows;
+}
 function haStr(f){return (f.ha==='H'?'vs ':'@ ')+f.opp;}
 function dstr(iso){var p=iso.split('-');return p[2]+'/'+p[1];}
+function detailHtml(team){
+  var rows=computeFull(team);
+  var h='<div style="padding:6px 4px 12px"><table><thead><tr><th>J</th><th>Fecha</th><th>Partido</th><th class="n">Monto</th><th>Registrar</th><th class="n">P&L</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    var f=r.f, marked=r.res;
+    var amt = r.stake!=null? money(r.stake) : (marked?'—':'<span style="color:#586170">pendiente</span>');
+    var pnl = (r.state==='done')? '<span class="'+(r.pnl>=0?'pos':'neg')+'">'+money(r.pnl)+'</span>' : '';
+    function mb(val,lbl,cls){var on=marked===val; return '<button class="'+cls+'" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="'+val+'" style="padding:3px 8px;font-size:11.5px;opacity:'+(on?'1':'0.55')+'">'+lbl+'</button>';}
+    var ctrl = mb('E','E','bE')+' '+mb('X','No','bX')+' '+(marked?'<button class="gr" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="clear" style="padding:3px 7px;font-size:11px">↺</button>':'');
+    var rowbg = r.state==='next'?' style="background:rgba(63,185,80,.06)"':'';
+    h+='<tr'+rowbg+'><td>J'+f.j+'</td><td>'+dstr(f.iso)+'</td><td>'+haStr(f)+'</td><td class="n">'+amt+'</td><td style="white-space:nowrap">'+ctrl+'</td><td class="n">'+pnl+'</td></tr>';
+  });
+  h+='</tbody></table></div>';
+  return h;
+}
 
 function render(){
   var comp={}; ORDER.forEach(function(t){comp[t]=compute(t);});
@@ -184,16 +215,21 @@ function render(){
     cfg.teams.forEach(function(t){
       var c=comp[t]; var badge=c.retired?'<span class="badge b-done">META ✓</span>':(c.stake>cfg.base?'<span class="badge b-hot">×'+Math.round(c.stake/cfg.base)+'</span>':'<span class="badge b-base">BASE</span>');
       var nextTxt=c.nextMatch?(haStr(c.nextMatch)+' · J'+c.nextMatch.j+' · '+dstr(c.nextMatch.iso)):'—';
-      lgHtml+='<tr><td><b>'+t+'</b></td><td class="n">'+c.draws+'/'+META+'</td><td style="color:#9aa7b8">'+nextTxt+'</td><td class="n">'+(c.nextStake!=null?money(c.nextStake):'—')+'</td><td>'+badge+'</td><td class="n '+(c.pnl>=0?'pos':'neg')+'">'+money(c.pnl)+'</td></tr>';
+      var open=EXP[t];
+      lgHtml+='<tr class="teamrow" data-team="'+t+'" style="cursor:pointer"><td><span style="color:#58a6ff">'+(open?'▾':'▸')+'</span> <b>'+t+'</b></td><td class="n">'+c.draws+'/'+META+'</td><td style="color:#9aa7b8">'+nextTxt+'</td><td class="n">'+(c.nextStake!=null?money(c.nextStake):'—')+'</td><td>'+badge+'</td><td class="n '+(c.pnl>=0?'pos':'neg')+'">'+money(c.pnl)+'</td></tr>';
+      if(open){ lgHtml+='<tr><td colspan="6" style="background:#0b0f15;padding:0">'+detailHtml(t)+'</td></tr>'; }
     });
     lgHtml+='</tbody></table>';
   }
   document.getElementById('leagues').innerHTML=lgHtml;
 
-  // wire
-  document.querySelectorAll('.bE').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'E');};});
-  document.querySelectorAll('.bX').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'X');};});
+  // wire quick cards
+  document.querySelectorAll('#next .bE').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'E');};});
+  document.querySelectorAll('#next .bX').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'X');};});
   document.querySelectorAll('input.od').forEach(function(el){el.onchange=function(){var t=el.dataset.t,j=+el.dataset.j; if(!st.o[t])st.o[t]={}; st.o[t][j]=el.value; save(); render();};});
+  // wire league expand
+  document.querySelectorAll('.teamrow').forEach(function(row){row.onclick=function(){var t=row.dataset.team; EXP[t]=!EXP[t]; render();};});
+  document.querySelectorAll('#leagues button[data-mv]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation(); var t=b.dataset.mt,j=+b.dataset.mj,v=b.dataset.mv; if(v==='clear'){ if(st.r[t])delete st.r[t][j]; } else { if(!st.r[t])st.r[t]={}; st.r[t][j]=v; } save(); render();};});
 }
 function mark(team,j,res){ if(!st.r[team])st.r[team]={}; st.r[team][j]=res; save(); render(); }
 document.getElementById('bank').addEventListener('change',function(e){st.bank=e.target.value;save();render();});
