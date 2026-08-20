@@ -138,6 +138,8 @@
       <button id="c-reset" style="margin-left:auto;background:#2a1417;color:#f0a0a0;border:1px solid #5a2a2a;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer">↺ Reiniciar J2</button>
     </div>
 
+    <div id="c-now" style="border:1px solid #2e6b3f;background:linear-gradient(180deg,#0f1e14,#0d1117);border-radius:12px;padding:16px 18px;margin-bottom:14px"></div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px">
       <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Empates cobrados</div><div id="c-draws" style="font-size:20px;font-weight:700;margin-top:2px">0 / 2</div></div>
       <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Total apostado</div><div id="c-staked" style="font-size:20px;font-weight:700;margin-top:2px">$0</div></div>
@@ -218,6 +220,38 @@
       var be=document.getElementById('c-bal'); be.textContent=money(bal); be.style.color=bal>0?'#3fb950':(bal<0?'#f85149':'#e6edf3');
       var bank=(parseFloat(st.bank)||0)+bal;
       document.getElementById('c-bankn').textContent=money(bank);
+      // ---- Tarjeta "Te toca ahora": primer partido sin resolver mientras no haya 2 empates ----
+      var now=document.getElementById('c-now'), curIdx=-1, d2=0;
+      for(var k=0;k<st.rows.length;k++){
+        if(d2>=2) break;
+        if(st.rows[k].res==='E'){d2++; continue;}
+        if(st.rows[k].res==='X'){continue;}
+        curIdx=k; break;
+      }
+      if(d2>=2){
+        now.style.borderColor='#2e6b3f';
+        now.innerHTML='<div style="font-size:22px;font-weight:700;color:#3fb950">✅ Jornada cerrada</div><div style="color:#9aa7b8;font-size:13.5px;margin-top:4px">Cobraste los 2 empates de la J2. Balance de la jornada: <b style="color:'+(bal>=0?'#3fb950':'#f85149')+'">'+money(bal)+'</b>.</div>';
+      } else if(curIdx===-1){
+        var carry=BASE; for(var m=0;m<st.rows.length;m++){var rr=st.rows[m]; if(rr.res==='E')carry=BASE; else if(rr.res==='X')carry=Math.round(carry*MULT);}
+        now.style.borderColor='#5a4a1a';
+        now.style.background='linear-gradient(180deg,#1e1a0f,#0d1117)';
+        now.innerHTML='<div style="font-size:19px;font-weight:700;color:#e3b341">⚠️ Jornada sin cerrar 2 empates</div><div style="color:#9aa7b8;font-size:13.5px;margin-top:4px">Se acabaron los partidos y no cayeron 2 empates. La progresión se arrastra: el próximo monto sería <b>'+money(carry)+'</b> en el 1er partido elegible de la J3.</div>';
+      } else {
+        var st2=sug[curIdx], cu=parseFloat(st.rows[curIdx].cuota)||3.2, win=st2*(cu-1);
+        now.style.borderColor='#2e6b3f';
+        now.style.background='linear-gradient(180deg,#0f1e14,#0d1117)';
+        now.innerHTML=
+          '<div style="font-size:11px;color:#5ddc86;text-transform:uppercase;letter-spacing:.06em;font-weight:700">🎯 Te toca ahora · empate #'+(d2+1)+' de 2</div>'+
+          '<div style="font-size:22px;font-weight:800;margin:4px 0 2px">'+MATCHES[curIdx]+'</div>'+
+          '<div style="font-size:15px;color:#e6edf3">Apuesta <b style="color:#5ddc86;font-size:20px">'+money(st2)+'</b> al empate · cuota <b>'+cu.toFixed(2)+'</b> · si empata cobras <b style="color:#3fb950">+'+money(win)+'</b></div>'+
+          '<div style="margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">'+
+            '<span style="color:#9aa7b8;font-size:12.5px">¿Ya se jugó?</span>'+
+            '<button id="now-E" style="background:#12331d;color:#5ddc86;border:1px solid #3fb950;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:700;cursor:pointer">✅ Empató</button>'+
+            '<button id="now-X" style="background:#331416;color:#f0a0a0;border:1px solid #f85149;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:700;cursor:pointer">❌ No empató</button>'+
+          '</div>';
+        document.getElementById('now-E').onclick=function(){st.rows[curIdx].bet=true; st.rows[curIdx].res='E'; save(); render();};
+        document.getElementById('now-X').onclick=function(){st.rows[curIdx].bet=true; st.rows[curIdx].res='X'; save(); render();};
+      }
       // wire events
       rowsB.querySelectorAll('.c-bet').forEach(function(el){el.onchange=function(){var i=+el.dataset.i; st.rows[i].bet=el.checked; if(!el.checked){st.rows[i].res=null;} save(); render();};});
       rowsB.querySelectorAll('.c-monto').forEach(function(el){el.onchange=function(){var i=+el.dataset.i; st.rows[i].monto=el.value; save(); render();};});
