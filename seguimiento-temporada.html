@@ -8,52 +8,61 @@
   :root{--bg:#0d1117;--panel:#161b22;--line:#2a3140;--txt:#e6edf3;--mut:#9aa7b8;--pos:#3fb950;--neg:#f85149;--accent:#58a6ff;--warn:#e3b341;--card:#0f1620;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
-  .wrap{max-width:1040px;margin:0 auto;padding:30px 16px 70px}
-  h1{font-size:25px;margin:0 0 4px}
-  .sub{color:var(--mut);font-size:14px;margin-bottom:20px}
-  h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:30px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin-bottom:6px}
-  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 14px 70px}
+  h1{font-size:24px;margin:0 0 4px}
+  .sub{color:var(--mut);font-size:13.5px;margin-bottom:18px}
+  h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:26px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
   .kpi .l{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
-  .kpi .v{font-size:22px;font-weight:800;margin-top:3px}
-  .flag{display:inline-block;min-width:34px;text-align:center;font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:2px 5px;vertical-align:middle}
+  .kpi .v{font-size:21px;font-weight:800;margin-top:3px}
+  .flag{display:inline-block;min-width:32px;text-align:center;font-size:10px;font-weight:800;color:#fff;border-radius:5px;padding:2px 5px;vertical-align:middle}
   .ESP{background:#c8102e}.ENG{background:#3d195b}.ITA{background:#0f74b8}.GER{background:#b3000c}
-  .now{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:11px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
-  .now.soon{border-color:#2e6b3f}
-  .now .team{font-size:16px;font-weight:700;min-width:150px}
-  .now .opp{color:var(--mut);font-size:13px}
-  .now .amt{font-size:20px;font-weight:800;color:#5ddc86}
-  .now .meta{font-size:12px;color:var(--mut)}
-  .now .btns{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-  .bE{background:#12331d;color:#5ddc86;border:1px solid #3fb950;border-radius:8px;padding:7px 13px;font-size:13.5px;font-weight:700;cursor:pointer}
-  .bX{background:#331416;color:#f0a0a0;border:1px solid #f85149;border-radius:8px;padding:7px 13px;font-size:13.5px;font-weight:700;cursor:pointer}
-  input.od{width:58px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:5px 6px;font-size:13px}
-  table{width:100%;border-collapse:collapse;font-size:12.5px}
-  th,td{padding:6px 8px;border-bottom:1px solid #1c232e;text-align:left}
-  th{color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.04em}
-  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
   .pos{color:var(--pos)}.neg{color:var(--neg)}
-  .scroll{max-height:460px;overflow:auto;border:1px solid var(--line);border-radius:12px}
-  .scroll table{margin:0}.scroll th{position:sticky;top:0;background:#11161d}
-  .lg{margin:16px 0 6px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-  .pill{font-size:11px;color:var(--mut);font-weight:400}
+  .week{background:var(--card);border:1px solid #2e6b3f;border-radius:11px;padding:10px 13px;margin-bottom:9px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .week .amt{font-size:18px;font-weight:800;color:#5ddc86;margin-left:auto}
+  .lgh{margin:22px 0 8px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+  .lgh .pill{font-size:11px;color:var(--mut);font-weight:400}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  .chd{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;flex-wrap:wrap}
+  .chd:hover{background:#1a212c}
+  .chd .nm{font-size:15px;font-weight:700}
+  .chd .mini{font-size:12px;color:var(--mut)}
+  .chd .bal{margin-left:auto;font-weight:700}
   .badge{font-size:10px;font-weight:700;border-radius:5px;padding:2px 7px}
   .b-base{background:#1a2230;color:#9aa7b8}.b-hot{background:#2a1e0c;color:#e3b341}.b-done{background:#12331d;color:#5ddc86}
-  .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
-  button.gr{background:#1f2733;color:#e6edf3;border:1px solid #2a3140;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer}
+  .body{display:none;padding:0 6px 8px}
+  .card.open .body{display:block}
+  .card.open .chd .arw{transform:rotate(90deg)}
+  .arw{display:inline-block;transition:.15s;color:var(--accent)}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:5px 7px;border-bottom:1px solid #1c232e;text-align:left;white-space:nowrap}
+  th{color:var(--mut);font-size:10px;text-transform:uppercase;letter-spacing:.03em;position:sticky;top:0;background:var(--panel)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  tr.next td{background:rgba(63,185,80,.07)}
+  tr.pend td{opacity:.5}
+  tr.retired td{opacity:.35}
+  input.mo{width:78px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:4px 6px;font-size:12.5px}
+  input.od{width:52px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:4px 5px;font-size:12px}
+  .rb{border-radius:6px;padding:3px 8px;font-size:11.5px;cursor:pointer;font-weight:700}
+  .rE{background:#12331d;color:#5ddc86;border:1px solid #3fb950}
+  .rX{background:#331416;color:#f0a0a0;border:1px solid #f85149}
+  .rC{background:#1f2733;color:#9aa7b8;border:1px solid #2a3140;font-weight:400}
+  .tblwrap{max-height:520px;overflow:auto;border-radius:8px}
+  .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
   button.rst{background:#2a1417;color:#f0a0a0;border:1px solid #5a2a2a;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer;margin-left:auto}
   .note{color:var(--mut);font-size:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin:10px 0}
-  .empty{color:var(--mut);font-size:13px;padding:10px 2px}
   a.lnk{color:var(--accent);text-decoration:none}
+  .empty{color:var(--mut);font-size:13px;padding:8px 2px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>📊 Seguimiento de Temporada — Empatadores</h1>
-  <div class="sub">4 ligas · 17 equipos · Martingala por equipo · meta 5 empates · stop loss al 8º · momios editables (reales al abrir)</div>
+  <div class="sub">4 ligas · 17 equipos · calendario completo por equipo · Martingala meta 5 · stop loss 8</div>
 
   <div class="note">
-    <b>Cómo funciona:</b> cada equipo lleva su propia Martingala. En <b>⏭️ Próximas apuestas</b> ves, ordenado por fecha, el <b>siguiente partido pendiente de registrar de cada equipo</b> (incluye los ya jugados que aún no marcas) y cuánto toca apostar. Como la progresión es <b>secuencial</b>, para registrar el de hoy primero marca los anteriores. <b>Para registrar partidos ya concluidos:</b> abajo en <b>🏆 Estado por liga</b>, toca el nombre de un equipo para <b>desplegar TODOS sus partidos</b> y marcar cualquiera (E / No / ↺). Se guarda en este dispositivo. · La estrategia de <b>empate por jornada de LaLiga</b> vive en su propia página: <a class="lnk" href="empates-espana.html">abrir →</a>
+    <b>Cómo se usa:</b> abre el equipo (toca su nombre) para ver <b>todo su calendario</b>. En cada partido: el <b>monto</b> viene sugerido por la progresión pero <b>lo puedes editar</b> — y al hacerlo, los montos siguientes se recalculan solos. Marca <b>E</b> (empató) o <b>No</b>; el <b>↺</b> borra. El balance del equipo y el total se actualizan al instante. Se guarda en este dispositivo. · Empate por jornada de LaLiga: <a class="lnk" href="empates-espana.html">su página →</a>
   </div>
 
   <div class="tools">
@@ -63,21 +72,13 @@
 
   <div class="kpis" id="kpis"></div>
 
-  <h2>⏭️ Próximas apuestas — qué toca y cuánto (por fecha)</h2>
-  <div id="next"></div>
+  <h2>⏭️ Esta semana — no te la saltes</h2>
+  <div id="week"></div>
 
-  <h2>📋 Registro cronológico — apuestas realizadas</h2>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Fecha</th><th>Liga</th><th>Partido</th><th class="n">Monto</th><th class="n">Momio</th><th>Result.</th><th class="n">P&L</th><th class="n">Balance</th></tr></thead>
-      <tbody id="ledger"></tbody>
-    </table>
-  </div>
+  <h2>🗓️ Calendario por equipo</h2>
+  <div id="teams"></div>
 
-  <h2>🏆 Estado por liga y equipo</h2>
-  <div id="leagues"></div>
-
-  <p style="color:var(--mut);font-size:11.5px;margin-top:26px">Calendario 2026-27 verificado (Sky Sports, ESPN, worldfootball, BeSoccer, fussballdaten). Las apuestas las ejecutas tú; esta página solo calcula señales, montos y balance. Momios por defecto 3.20 hasta cargar el real. Fechas pueden moverse ±1 día por TV. Juega con responsabilidad.</p>
+  <p style="color:var(--mut);font-size:11.5px;margin-top:26px">Calendario 2026-27 verificado (Sky Sports, ESPN, worldfootball, BeSoccer, fussballdaten). Las apuestas las ejecutas tú; esta página solo calcula montos y balance. Momio por defecto 3.20 hasta cargar el real. Fechas pueden moverse ±1 día por TV. Juega con responsabilidad.</p>
 </div>
 
 <script>
@@ -88,153 +89,116 @@ var LEAGUE={ESP:{teams:['Betis','Sevilla','Real Sociedad','Rayo Vallecano','Alav
   GER:{teams:['E. Frankfurt','FC Augsburg','Mainz 05','Union Berlin'],base:200,mult:1.5,name:'Bundesliga'}};
 var META=5, STOP=8, DEF_ODDS=3.20;
 var ODDS0={'Rayo Vallecano|2':3.10,'Alavés|2':3.10,'Betis|2':3.40,'Real Sociedad|2':3.40,'Sevilla|2':3.55};
-var T2L={}; for(var lg in LEAGUE){LEAGUE[lg].teams.forEach(function(t){T2L[t]=lg;});}
-var ORDER=[]; for(var lg in LEAGUE){LEAGUE[lg].teams.forEach(function(t){ORDER.push(t);});}
+var T2L={},ORDER=[]; for(var lg in LEAGUE){LEAGUE[lg].teams.forEach(function(t){T2L[t]=lg;ORDER.push(t);});}
 
-var KEY='master_empatadores_v1';
-var st={bank:20000,r:{},o:{}};
+var KEY='master_empatadores_v2';
+var st={bank:20000,r:{},m:{},o:{},open:{}};
 try{var raw=localStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.r) st=p;}}catch(e){}
-if(!st.r)st.r={}; if(!st.o)st.o={};
-var EXP={};
+['r','m','o','open'].forEach(function(k){if(!st[k])st[k]={};});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function money(x){var n=Math.round(x);return (n<0?'-$':'$')+Math.abs(n).toLocaleString('en-US');}
-function oddsFor(team,j){ if(st.o[team]&&st.o[team][j]!=null) return parseFloat(st.o[team][j]); if(ODDS0[team+'|'+j]!=null) return ODDS0[team+'|'+j]; return DEF_ODDS; }
-
-// process one team -> {pnl, draws, nextStake, nextMatch, retired, log[]}
-function compute(team){
-  var lg=T2L[team], cfg=LEAGUE[lg];
-  var stake=cfg.base, draws=0, steps=0, pnl=0;
-  var fixtures=FIX[team], log=[];
-  for(var i=0;i<fixtures.length;i++){
-    var f=fixtures[i];
-    if(draws>=META) return {pnl:pnl,draws:draws,nextStake:null,nextMatch:null,retired:true,log:log,stake:stake};
-    var res=st.r[team]?st.r[team][f.j]:null;
-    if(!res){ return {pnl:pnl,draws:draws,nextStake:stake,nextMatch:f,retired:false,log:log,stake:stake}; }
-    var od=oddsFor(team,f.j);
-    if(res==='E'){ var g=stake*(od-1); pnl+=g; log.push({f:f,team:team,lg:lg,stake:stake,od:od,res:'E',pnl:g}); draws++; stake=cfg.base; steps=0; }
-    else { pnl-=stake; log.push({f:f,team:team,lg:lg,stake:stake,od:od,res:'X',pnl:-stake}); steps++; if(steps>=STOP){stake=cfg.base;steps=0;} else {stake=Math.round(stake*cfg.mult);} }
-  }
-  return {pnl:pnl,draws:draws,nextStake:(draws>=META?null:stake),nextMatch:null,retired:draws>=META,log:log,stake:stake};
-}
-// full walk: stake per match up to first unmarked; rows after a gap are pending
-function computeFull(team){
-  var lg=T2L[team], cfg=LEAGUE[lg];
-  var stake=cfg.base, draws=0, steps=0, gap=false, rows=[];
-  FIX[team].forEach(function(f){
-    var res=st.r[team]?st.r[team][f.j]:null;
-    if(draws>=META){ rows.push({f:f,res:res,stake:null,state:'retired'}); return; }
-    if(gap){ rows.push({f:f,res:res,stake:null,state:'pending'}); return; }
-    if(!res){ rows.push({f:f,res:null,stake:stake,state:'next'}); gap=true; return; }
-    var od=oddsFor(team,f.j);
-    if(res==='E'){ rows.push({f:f,res:'E',stake:stake,od:od,pnl:stake*(od-1),state:'done'}); draws++; stake=cfg.base; steps=0; }
-    else { rows.push({f:f,res:'X',stake:stake,od:od,pnl:-stake,state:'done'}); steps++; if(steps>=STOP){stake=cfg.base;steps=0;} else stake=Math.round(stake*cfg.mult); }
-  });
-  return rows;
-}
+function oddsFor(t,j){ if(st.o[t]&&st.o[t][j]!=null&&st.o[t][j]!=='') return parseFloat(st.o[t][j]); if(ODDS0[t+'|'+j]!=null) return ODDS0[t+'|'+j]; return DEF_ODDS; }
 function haStr(f){return (f.ha==='H'?'vs ':'@ ')+f.opp;}
 function dstr(iso){var p=iso.split('-');return p[2]+'/'+p[1];}
-function detailHtml(team){
-  var rows=computeFull(team);
-  var h='<div style="padding:6px 4px 12px"><table><thead><tr><th>J</th><th>Fecha</th><th>Partido</th><th class="n">Monto</th><th>Registrar</th><th class="n">P&L</th></tr></thead><tbody>';
-  rows.forEach(function(r){
-    var f=r.f, marked=r.res;
-    var amt = r.stake!=null? money(r.stake) : (marked?'—':'<span style="color:#586170">pendiente</span>');
-    var pnl = (r.state==='done')? '<span class="'+(r.pnl>=0?'pos':'neg')+'">'+money(r.pnl)+'</span>' : '';
-    function mb(val,lbl,cls){var on=marked===val; return '<button class="'+cls+'" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="'+val+'" style="padding:3px 8px;font-size:11.5px;opacity:'+(on?'1':'0.55')+'">'+lbl+'</button>';}
-    var ctrl = mb('E','E','bE')+' '+mb('X','No','bX')+' '+(marked?'<button class="gr" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="clear" style="padding:3px 7px;font-size:11px">↺</button>':'');
-    var rowbg = r.state==='next'?' style="background:rgba(63,185,80,.06)"':'';
-    h+='<tr'+rowbg+'><td>J'+f.j+'</td><td>'+dstr(f.iso)+'</td><td>'+haStr(f)+'</td><td class="n">'+amt+'</td><td style="white-space:nowrap">'+ctrl+'</td><td class="n">'+pnl+'</td></tr>';
+function todayISO(){try{var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}catch(e){return '2026-08-20';}}
+
+// walk full calendar; montos chain off ACTUAL entered montos
+function walk(team){
+  var lg=T2L[team], cfg=LEAGUE[lg];
+  var sug=cfg.base, draws=0, steps=0, bal=0, gapHit=false, rows=[];
+  FIX[team].forEach(function(f){
+    var res=st.r[team]?st.r[team][f.j]:null;
+    var override=(st.m[team]&&st.m[team][f.j]!=null&&st.m[team][f.j]!=='')?parseFloat(st.m[team][f.j]):null;
+    if(draws>=META){ rows.push({f:f,res:res,monto:null,state:'retired'}); return; }
+    var eff = override!=null?override:sug;
+    var od=oddsFor(team,f.j);
+    if(res==='E'){ var g=eff*(od-1); bal+=g; rows.push({f:f,res:'E',monto:eff,od:od,pnl:g,bal:bal,state:'done',sug:sug}); draws++; sug=cfg.base; steps=0; }
+    else if(res==='X'){ bal-=eff; rows.push({f:f,res:'X',monto:eff,od:od,pnl:-eff,bal:bal,state:'done',sug:sug}); steps++; if(steps>=STOP){sug=cfg.base;steps=0;} else sug=Math.round(eff*cfg.mult); }
+    else { var isNext=!gapHit; if(!gapHit)gapHit=true; rows.push({f:f,res:null,monto:eff,od:od,pnl:null,bal:bal,state:isNext?'next':'pend',sug:sug}); }
+  });
+  var lastDraws=draws, done=rows.filter(function(r){return r.state==='done';});
+  return {rows:rows, pnl:bal, draws:draws, retired:draws>=META,
+          next:rows.filter(function(r){return r.state==='next';})[0]||null};
+}
+
+function render(){
+  var W={}; ORDER.forEach(function(t){W[t]=walk(t);});
+  var totPnl=0,totDraws=0,retired=0,byLg={};
+  ORDER.forEach(function(t){var w=W[t];totPnl+=w.pnl;totDraws+=w.draws;if(w.retired)retired++;byLg[T2L[t]]=(byLg[T2L[t]]||0)+w.pnl;});
+  var bank=(parseFloat(st.bank)||0)+totPnl;
+  document.getElementById('kpis').innerHTML=
+    '<div class="kpi"><div class="l">Balance total</div><div class="v '+(totPnl>=0?'pos':'neg')+'">'+money(totPnl)+'</div></div>'+
+    '<div class="kpi"><div class="l">Bank actual</div><div class="v">'+money(bank)+'</div></div>'+
+    '<div class="kpi"><div class="l">Empates logrados</div><div class="v">'+totDraws+'</div></div>'+
+    '<div class="kpi"><div class="l">Equipos cerrados</div><div class="v">'+retired+' / 17</div></div>';
+
+  // This week
+  var ti=todayISO(), inWeek=[];
+  function addDays(iso,n){var p=iso.split('-');var d=new Date(+p[0],+p[1]-1,+p[2]+n);return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  var wk=addDays(ti,8), wkback=addDays(ti,-6);
+  ORDER.forEach(function(t){var w=W[t]; if(w.next && !w.retired){ var iso=w.next.f.iso; if(iso<=wk){ inWeek.push({t:t,w:w}); } }});
+  inWeek.sort(function(a,b){return a.w.next.f.iso<b.w.next.f.iso?-1:1;});
+  var wl=document.getElementById('week');
+  wl.innerHTML = inWeek.length? inWeek.map(function(o){var t=o.t,n=o.w.next,f=n.f,lg=T2L[t];
+    return '<div class="week"><span class="flag '+lg+'">'+lg+'</span> <b>'+t+'</b> <span style="color:#9aa7b8">'+haStr(f)+'</span> <span style="color:#9aa7b8;font-size:12px">J'+f.j+' · '+dstr(f.iso)+'</span>'+
+      '<span class="amt">'+money(n.monto)+'</span>'+
+      '<button class="rb rE" data-mt="'+t+'" data-mj="'+f.j+'" data-mv="E">✅ Empató</button>'+
+      '<button class="rb rX" data-mt="'+t+'" data-mj="'+f.j+'" data-mv="X">❌ No</button></div>';
+  }).join('') : '<div class="empty">Nada en los próximos días (o falta registrar partidos anteriores para que aparezca el siguiente).</div>';
+
+  // Teams by league
+  var html='';
+  for(var lg in LEAGUE){
+    var cfg=LEAGUE[lg];
+    html+='<div class="lgh"><span class="flag '+lg+'">'+lg+'</span> '+cfg.name+' <span class="pill">×'+cfg.mult+' · base '+money(cfg.base)+' · meta '+META+'</span><span class="pill" style="margin-left:auto">balance <b class="'+((byLg[lg]||0)>=0?'pos':'neg')+'">'+money(byLg[lg]||0)+'</b></span></div>';
+    cfg.teams.forEach(function(t){
+      var w=W[t], open=st.open[t];
+      var badge=w.retired?'<span class="badge b-done">META ✓</span>':(w.next&&w.next.sug>cfg.base?'<span class="badge b-hot">×'+Math.round(w.next.sug/cfg.base)+'</span>':'<span class="badge b-base">BASE</span>');
+      var nxt=w.next?(haStr(w.next.f)+' · J'+w.next.f.j+' · '+dstr(w.next.f.iso)+' · <b>'+money(w.next.monto)+'</b>'):'temporada/meta completa';
+      html+='<div class="card'+(open?' open':'')+'" data-team="'+t+'">'+
+        '<div class="chd" data-team="'+t+'"><span class="arw">▸</span> <span class="nm">'+t+'</span> '+badge+' <span class="mini">'+w.draws+'/'+META+' empates · próximo: '+nxt+'</span> <span class="bal '+(w.pnl>=0?'pos':'neg')+'">'+money(w.pnl)+'</span></div>'+
+        '<div class="body">'+ (open? tableHtml(t,w) : '') +'</div>'+
+      '</div>';
+    });
+  }
+  document.getElementById('teams').innerHTML=html;
+
+  // wire
+  document.querySelectorAll('.chd').forEach(function(h){h.onclick=function(){var t=h.dataset.team; st.open[t]=!st.open[t]; save(); render();};});
+  document.querySelectorAll('button[data-mv]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation(); var t=b.dataset.mt,j=+b.dataset.mj,v=b.dataset.mv; if(v==='clear'){if(st.r[t])delete st.r[t][j];} else {if(!st.r[t])st.r[t]={}; st.r[t][j]=v;} save(); render();};});
+  document.querySelectorAll('input.mo').forEach(function(el){el.onchange=function(){var t=el.dataset.mt,j=+el.dataset.mj; if(!st.m[t])st.m[t]={}; if(el.value==='')delete st.m[t][j]; else st.m[t][j]=el.value; save(); render();};});
+  document.querySelectorAll('input.od').forEach(function(el){el.onchange=function(){var t=el.dataset.mt,j=+el.dataset.mj; if(!st.o[t])st.o[t]={}; if(el.value==='')delete st.o[t][j]; else st.o[t][j]=el.value; save(); render();};});
+}
+
+function tableHtml(team,w){
+  var h='<div class="tblwrap"><table><thead><tr><th>J</th><th>Fecha</th><th>Partido</th><th class="n">Monto</th><th class="n">Momio</th><th>Resultado</th><th class="n">P&L</th><th class="n">Balance</th></tr></thead><tbody>';
+  w.rows.forEach(function(r){
+    var f=r.f;
+    var cls=r.state==='next'?'next':(r.state==='pend'?'pend':(r.state==='retired'?'retired':''));
+    var montoCell, odCell, resCell, pnlCell, balCell;
+    if(r.state==='retired'){
+      montoCell='<span style="color:#586170">—</span>'; odCell='—'; resCell='<span style="color:#586170">meta ✓</span>'; pnlCell=''; balCell=money(r.bal);
+    } else {
+      var mval = (st.m[team]&&st.m[team][f.j]!=null&&st.m[team][f.j]!=='')? st.m[team][f.j] : '';
+      montoCell='<input class="mo" data-mt="'+team+'" data-mj="'+f.j+'" type="number" step="10" value="'+mval+'" placeholder="'+Math.round(r.monto)+'">';
+      var oval = (st.o[team]&&st.o[team][f.j]!=null&&st.o[team][f.j]!=='')? st.o[team][f.j] : '';
+      odCell='<input class="od" data-mt="'+team+'" data-mj="'+f.j+'" type="number" step="0.05" value="'+oval+'" placeholder="'+oddsFor(team,f.j).toFixed(2)+'">';
+      var on=function(v){return r.res===v;};
+      resCell='<button class="rb rE" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="E" style="opacity:'+(on('E')?'1':'.5')+'">E</button> '+
+              '<button class="rb rX" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="X" style="opacity:'+(on('X')?'1':'.5')+'">No</button>'+
+              (r.res?' <button class="rb rC" data-mt="'+team+'" data-mj="'+f.j+'" data-mv="clear">↺</button>':'');
+      pnlCell = r.pnl!=null? '<span class="'+(r.pnl>=0?'pos':'neg')+'">'+money(r.pnl)+'</span>' : '';
+      balCell = r.state==='done'? '<b>'+money(r.bal)+'</b>' : '';
+    }
+    h+='<tr class="'+cls+'"><td>J'+f.j+'</td><td>'+dstr(f.iso)+'</td><td>'+haStr(f)+'</td><td class="n">'+montoCell+'</td><td class="n">'+odCell+'</td><td>'+resCell+'</td><td class="n">'+pnlCell+'</td><td class="n">'+balCell+'</td></tr>';
   });
   h+='</tbody></table></div>';
   return h;
 }
 
-function render(){
-  var comp={}; ORDER.forEach(function(t){comp[t]=compute(t);});
-  // KPIs
-  var totPnl=0, byLg={}, totDraws=0, retired=0, pending=0;
-  ORDER.forEach(function(t){var c=comp[t]; totPnl+=c.pnl; totDraws+=c.draws; if(c.retired)retired++; byLg[T2L[t]]=(byLg[T2L[t]]||0)+c.pnl;});
-  var bank=(parseFloat(st.bank)||0)+totPnl;
-  var kp='';
-  kp+='<div class="kpi"><div class="l">Balance total</div><div class="v '+(totPnl>=0?'pos':'neg')+'">'+money(totPnl)+'</div></div>';
-  kp+='<div class="kpi"><div class="l">Bank actual</div><div class="v">'+money(bank)+'</div></div>';
-  kp+='<div class="kpi"><div class="l">Empates logrados</div><div class="v">'+totDraws+'</div></div>';
-  kp+='<div class="kpi"><div class="l">Equipos cerrados</div><div class="v">'+retired+' / 17</div></div>';
-  document.getElementById('kpis').innerHTML=kp;
-
-  // NEXT bets (active teams, sorted by date)
-  var nexts=[];
-  ORDER.forEach(function(t){var c=comp[t]; if(c.nextMatch && !c.retired) nexts.push({t:t,c:c});});
-  nexts.sort(function(a,b){return a.c.nextMatch.iso<b.c.nextMatch.iso?-1:(a.c.nextMatch.iso>b.c.nextMatch.iso?1:0);});
-  var nx=document.getElementById('next');
-  if(!nexts.length){ nx.innerHTML='<div class="empty">No hay próximas apuestas (todos los equipos cerraron su meta o terminó la temporada).</div>'; }
-  else {
-    var today='2026-08-20';
-    nx.innerHTML=nexts.map(function(o){
-      var t=o.t,c=o.c,f=c.nextMatch,lg=T2L[t];
-      var od=oddsFor(t,f.j), win=c.nextStake*(od-1);
-      var soon = f.iso<=('2026-08-27'); // highlight imminent
-      return '<div class="now'+(soon?' soon':'')+'">'+
-        '<span class="flag '+lg+'">'+lg+'</span>'+
-        '<div><div class="team">'+t+' <span class="opp">'+haStr(f)+'</span></div>'+
-        '<div class="meta">Jornada '+f.j+' · '+dstr(f.iso)+' · empate '+(c.draws+1)+'/'+META+' · va '+money(c.pnl)+'</div></div>'+
-        '<div style="text-align:right"><div class="meta">apuesta</div><div class="amt">'+money(c.nextStake)+'</div></div>'+
-        '<div class="btns"><span class="meta">momio</span><input class="od" data-t="'+t+'" data-j="'+f.j+'" type="number" step="0.05" value="'+od.toFixed(2)+'">'+
-        '<span class="meta">gana +'+money(win)+'</span>'+
-        '<button class="bE" data-t="'+t+'" data-j="'+f.j+'">✅ Empató</button>'+
-        '<button class="bX" data-t="'+t+'" data-j="'+f.j+'">❌ No</button></div>'+
-      '</div>';
-    }).join('');
-  }
-
-  // LEDGER (all played, merged, sorted by date, running global balance)
-  var all=[]; ORDER.forEach(function(t){comp[t].log.forEach(function(e){all.push(e);});});
-  all.sort(function(a,b){return a.f.iso<b.f.iso?-1:(a.f.iso>b.f.iso?1:(ORDER.indexOf(a.team)-ORDER.indexOf(b.team)));});
-  var run=(parseFloat(st.bank)||0), rows='';
-  all.forEach(function(e){
-    run+=e.pnl;
-    rows+='<tr>'+
-      '<td>'+dstr(e.f.iso)+'</td>'+
-      '<td><span class="flag '+e.lg+'">'+e.lg+'</span></td>'+
-      '<td><b>'+e.team+'</b> <span style="color:#9aa7b8">'+haStr(e.f)+'</span> <span style="color:#586170">J'+e.f.j+'</span></td>'+
-      '<td class="n">'+money(e.stake)+'</td>'+
-      '<td class="n">'+e.od.toFixed(2)+'</td>'+
-      '<td>'+(e.res==='E'?'<span class="pos">✅ Empate</span>':'<span class="neg">❌ No</span>')+'</td>'+
-      '<td class="n '+(e.pnl>=0?'pos':'neg')+'">'+money(e.pnl)+'</td>'+
-      '<td class="n"><b>'+money(run)+'</b></td>'+
-    '</tr>';
-  });
-  document.getElementById('ledger').innerHTML = rows || '<tr><td colspan="8" class="empty">Aún no registras apuestas. Marca resultados en “Próximas apuestas”.</td></tr>';
-
-  // LEAGUES summary
-  var lgHtml='';
-  for(var lg in LEAGUE){
-    var cfg=LEAGUE[lg];
-    lgHtml+='<div class="lg"><span class="flag '+lg+'">'+lg+'</span> '+cfg.name+' <span class="pill">×'+cfg.mult+' · base '+money(cfg.base)+' · meta '+META+'</span> <span class="pill" style="margin-left:auto">balance '+'<b class="'+(byLg[lg]>=0?'pos':'neg')+'">'+money(byLg[lg]||0)+'</b></span></div>';
-    lgHtml+='<table><thead><tr><th>Equipo</th><th class="n">Empates</th><th>Próximo</th><th class="n">Monto</th><th>Estado</th><th class="n">P&L</th></tr></thead><tbody>';
-    cfg.teams.forEach(function(t){
-      var c=comp[t]; var badge=c.retired?'<span class="badge b-done">META ✓</span>':(c.stake>cfg.base?'<span class="badge b-hot">×'+Math.round(c.stake/cfg.base)+'</span>':'<span class="badge b-base">BASE</span>');
-      var nextTxt=c.nextMatch?(haStr(c.nextMatch)+' · J'+c.nextMatch.j+' · '+dstr(c.nextMatch.iso)):'—';
-      var open=EXP[t];
-      lgHtml+='<tr class="teamrow" data-team="'+t+'" style="cursor:pointer"><td><span style="color:#58a6ff">'+(open?'▾':'▸')+'</span> <b>'+t+'</b></td><td class="n">'+c.draws+'/'+META+'</td><td style="color:#9aa7b8">'+nextTxt+'</td><td class="n">'+(c.nextStake!=null?money(c.nextStake):'—')+'</td><td>'+badge+'</td><td class="n '+(c.pnl>=0?'pos':'neg')+'">'+money(c.pnl)+'</td></tr>';
-      if(open){ lgHtml+='<tr><td colspan="6" style="background:#0b0f15;padding:0">'+detailHtml(t)+'</td></tr>'; }
-    });
-    lgHtml+='</tbody></table>';
-  }
-  document.getElementById('leagues').innerHTML=lgHtml;
-
-  // wire quick cards
-  document.querySelectorAll('#next .bE').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'E');};});
-  document.querySelectorAll('#next .bX').forEach(function(b){b.onclick=function(){mark(b.dataset.t,+b.dataset.j,'X');};});
-  document.querySelectorAll('input.od').forEach(function(el){el.onchange=function(){var t=el.dataset.t,j=+el.dataset.j; if(!st.o[t])st.o[t]={}; st.o[t][j]=el.value; save(); render();};});
-  // wire league expand
-  document.querySelectorAll('.teamrow').forEach(function(row){row.onclick=function(){var t=row.dataset.team; EXP[t]=!EXP[t]; render();};});
-  document.querySelectorAll('#leagues button[data-mv]').forEach(function(b){b.onclick=function(ev){ev.stopPropagation(); var t=b.dataset.mt,j=+b.dataset.mj,v=b.dataset.mv; if(v==='clear'){ if(st.r[t])delete st.r[t][j]; } else { if(!st.r[t])st.r[t]={}; st.r[t][j]=v; } save(); render();};});
-}
-function mark(team,j,res){ if(!st.r[team])st.r[team]={}; st.r[team][j]=res; save(); render(); }
 document.getElementById('bank').addEventListener('change',function(e){st.bank=e.target.value;save();render();});
 document.getElementById('bank').value=st.bank;
-document.getElementById('reset').onclick=function(){ if(confirm('¿Borrar todos los resultados y montos registrados?')){ st={bank:st.bank,r:{},o:{}}; save(); render(); } };
+document.getElementById('reset').onclick=function(){ if(confirm('¿Borrar todos los resultados y montos registrados?')){ st={bank:st.bank,r:{},m:{},o:{},open:{}}; save(); render(); } };
 render();
 </script>
 </body>
