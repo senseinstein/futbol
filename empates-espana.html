@@ -72,22 +72,164 @@
 
   <h2 class="sec">🗓️ Jornada 2 — orden de juego (fecha y hora)</h2>
   <p style="color:var(--mut);font-size:13px">Todos los partidos <b>en el orden en que se juegan</b>. Recorres la lista de arriba hacia abajo apostando el empate; los <span style="color:#ff9a90">excluidos</span> (grandes vs no-grande) se <b>saltan</b>. Paras cuando cobres <b>2 empates</b>. "Prob. empate" ayuda a saber cuáles tienen más chance, pero el orden de apuesta lo marca el horario.</p>
+  <div id="tzbar" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px;font-size:13px;color:var(--mut)">
+    <span>Mostrando horarios en <b id="tzname">tu zona horaria</b></span>
+    <button id="tztoggle" style="background:#1f2733;color:#e6edf3;border:1px solid #2a3140;border-radius:8px;padding:5px 11px;font-size:12.5px;cursor:pointer">Ver en hora de España</button>
+  </div>
   <table>
     <thead><tr><th class="n">#</th><th>Fecha y hora</th><th>Partido</th><th class="n">Prob. empate</th><th>Estado</th></tr></thead>
     <tbody>
-      <tr><td class="n">1</td><td>Jue 20 · 21:00</td><td>Rayo vs Alavés</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
-      <tr class="pick"><td class="n">2</td><td>Vie 21 · 21:00</td><td><b>Betis vs Real Sociedad</b></td><td class="n">33%</td><td><span class="tag t-star">APOSTAR · TOP</span></td></tr>
-      <tr><td class="n">3</td><td>Sáb 22 · 17:00</td><td>Athletic vs Sevilla</td><td class="n">27%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
-      <tr class="pick"><td class="n">4</td><td>Sáb 22 · 19:30</td><td><b>Valencia vs Celta</b></td><td class="n">31%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
-      <tr class="excl"><td class="n">—</td><td>Sáb 22 · 21:30</td><td>Espanyol vs <b>Real Madrid</b></td><td class="n">26%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
-      <tr class="excl"><td class="n">—</td><td>Dom 23 · 17:00</td><td><b>Atlético</b> vs Villarreal</td><td class="n">27%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
-      <tr><td class="n">5</td><td>Dom 23 · 19:30</td><td>Getafe vs Racing</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
-      <tr class="excl"><td class="n">—</td><td>Dom 23 · 21:30</td><td>Elche vs <b>Barcelona</b></td><td class="n">24%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
-      <tr><td class="n">6</td><td>Lun 24 · 19:30</td><td>Osasuna vs Levante</td><td class="n">25%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
-      <tr><td class="n">7</td><td>Lun 24 · 21:30</td><td>Málaga vs Deportivo</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr><td class="n">1</td><td class="dt" data-utc="2026-08-20T19:00:00Z" data-es="Jue 20 · 21:00">Jue 20 · 21:00</td><td>Rayo vs Alavés</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="pick"><td class="n">2</td><td class="dt" data-utc="2026-08-21T19:00:00Z" data-es="Vie 21 · 21:00">Vie 21 · 21:00</td><td><b>Betis vs Real Sociedad</b></td><td class="n">33%</td><td><span class="tag t-star">APOSTAR · TOP</span></td></tr>
+      <tr><td class="n">3</td><td class="dt" data-utc="2026-08-22T15:00:00Z" data-es="Sáb 22 · 17:00">Sáb 22 · 17:00</td><td>Athletic vs Sevilla</td><td class="n">27%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="pick"><td class="n">4</td><td class="dt" data-utc="2026-08-22T17:30:00Z" data-es="Sáb 22 · 19:30">Sáb 22 · 19:30</td><td><b>Valencia vs Celta</b></td><td class="n">31%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td class="dt" data-utc="2026-08-22T19:30:00Z" data-es="Sáb 22 · 21:30">Sáb 22 · 21:30</td><td>Espanyol vs <b>Real Madrid</b></td><td class="n">26%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td class="dt" data-utc="2026-08-23T15:00:00Z" data-es="Dom 23 · 17:00">Dom 23 · 17:00</td><td><b>Atlético</b> vs Villarreal</td><td class="n">27%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr><td class="n">5</td><td class="dt" data-utc="2026-08-23T17:30:00Z" data-es="Dom 23 · 19:30">Dom 23 · 19:30</td><td>Getafe vs Racing</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr class="excl"><td class="n">—</td><td class="dt" data-utc="2026-08-23T19:30:00Z" data-es="Dom 23 · 21:30">Dom 23 · 21:30</td><td>Elche vs <b>Barcelona</b></td><td class="n">24%</td><td><span class="tag t-out">SALTAR (grande)</span></td></tr>
+      <tr><td class="n">6</td><td class="dt" data-utc="2026-08-24T17:30:00Z" data-es="Lun 24 · 19:30">Lun 24 · 19:30</td><td>Osasuna vs Levante</td><td class="n">25%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
+      <tr><td class="n">7</td><td class="dt" data-utc="2026-08-24T19:30:00Z" data-es="Lun 24 · 21:30">Lun 24 · 21:30</td><td>Málaga vs Deportivo</td><td class="n">30%</td><td><span class="tag t-in">APOSTAR</span></td></tr>
     </tbody>
   </table>
-  <p style="color:var(--mut);font-size:12.5px">Horarios en hora de España (CEST). ⚠️ Algunas horas no están 100% confirmadas por LaLiga al cierre; verifica el día previo. 3 partidos se saltan por el filtro (los 3 son grande-vs-no-grande; no hay grande-vs-grande esta jornada).</p>
+  <p style="color:var(--mut);font-size:12.5px">Los horarios se ajustan <b>automáticamente a la zona horaria de tu dispositivo</b> (usa el botón para verlos en hora de España si prefieres). ⚠️ Algunas horas no están 100% confirmadas por LaLiga al cierre; verifica el día previo. 3 partidos se saltan por el filtro (los 3 son grande-vs-no-grande; no hay grande-vs-grande esta jornada).</p>
+
+  <script>
+  (function(){
+    var DIAS=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    var cells=document.querySelectorAll('td.dt');
+    var tz;
+    try{ tz=Intl.DateTimeFormat().resolvedOptions().timeZone; }catch(e){ tz=null; }
+    var nameEl=document.getElementById('tzname');
+    if(nameEl && tz) nameEl.textContent=tz.replace(/_/g,' ');
+    function fmtLocal(iso){
+      var d=new Date(iso);
+      var dia=DIAS[d.getDay()];
+      var num=d.getDate();
+      var hh=('0'+d.getHours()).slice(-2);
+      var mm=('0'+d.getMinutes()).slice(-2);
+      return dia+' '+num+' · '+hh+':'+mm;
+    }
+    var showES=false;
+    function render(){
+      cells.forEach(function(c){
+        c.textContent = showES ? c.getAttribute('data-es') : fmtLocal(c.getAttribute('data-utc'));
+      });
+    }
+    var btn=document.getElementById('tztoggle');
+    if(btn){
+      btn.addEventListener('click',function(){
+        showES=!showES;
+        btn.textContent = showES ? 'Ver en mi zona horaria' : 'Ver en hora de España';
+        if(nameEl) nameEl.textContent = showES ? 'hora de España (CEST)' : (tz?tz.replace(/_/g,' '):'tu zona horaria');
+        render();
+      });
+    }
+    render();
+  })();
+  </script>
+
+  <h2 class="sec">🧮 Mi control — Jornada 2</h2>
+  <p style="color:var(--mut);font-size:12.5px">Marca las apuestas que hiciste, ajusta el monto real y registra el resultado. La página calcula sola tu balance y tu bank actual. <b>Se guarda en este dispositivo</b> (no se sincroniza con otros). La <b>cuota es editable por partido</b> y viene precargada con las cuotas reales de Caliente (al 20 ago); el bank inicial también es editable.</p>
+
+  <div id="ctrl-esp" style="background:var(--panel,#161b22);border:1px solid var(--line,#2a3140);border-radius:12px;padding:14px 16px">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px">
+      <label style="font-size:12px;color:var(--mut,#9aa7b8)">Bank inicial<br>
+        <span style="color:var(--txt,#e6edf3)">$ </span><input id="c-bank" type="number" step="50" value="10000" style="width:110px;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:8px;padding:6px 8px;font-size:14px"></label>
+      <button id="c-reset" style="margin-left:auto;background:#2a1417;color:#f0a0a0;border:1px solid #5a2a2a;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer">↺ Reiniciar J2</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px">
+      <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Empates cobrados</div><div id="c-draws" style="font-size:20px;font-weight:700;margin-top:2px">0 / 2</div></div>
+      <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Total apostado</div><div id="c-staked" style="font-size:20px;font-weight:700;margin-top:2px">$0</div></div>
+      <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Balance jornada</div><div id="c-bal" style="font-size:20px;font-weight:700;margin-top:2px">$0</div></div>
+      <div style="background:#0d1117;border:1px solid #2a3140;border-radius:10px;padding:10px 12px"><div style="font-size:11px;color:#9aa7b8;text-transform:uppercase;letter-spacing:.04em">Bank actual</div><div id="c-bankn" style="font-size:20px;font-weight:700;margin-top:2px">$10,000</div></div>
+    </div>
+
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead><tr style="color:#9aa7b8;font-size:11px;text-transform:uppercase;letter-spacing:.04em">
+        <th style="text-align:left;padding:6px 8px;border-bottom:1px solid #2a3140">Aposté</th>
+        <th style="text-align:left;padding:6px 8px;border-bottom:1px solid #2a3140">Partido</th>
+        <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #2a3140">Sugerido</th>
+        <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #2a3140">Monto real</th>
+        <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #2a3140">Cuota</th>
+        <th style="text-align:center;padding:6px 8px;border-bottom:1px solid #2a3140">Resultado</th>
+        <th style="text-align:right;padding:6px 8px;border-bottom:1px solid #2a3140">P&L</th>
+      </tr></thead>
+      <tbody id="c-rows"></tbody>
+    </table>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var KEY='esp_j2_control_v1';
+    var BASE=100, MULT=2; // doblez base $100
+    var MATCHES=['Rayo vs Alavés','Betis vs Real Sociedad','Athletic vs Sevilla','Valencia vs Celta','Getafe vs Racing','Osasuna vs Levante','Málaga vs Deportivo'];
+    var ODDS0=[3.10,3.40,3.55,3.20,2.95,3.60,3.10]; // cuotas reales de empate (Caliente, 20 ago)
+    var st={bank:10000,rows:MATCHES.map(function(_,i){return {bet:false,monto:'',res:null,cuota:ODDS0[i]};})};
+    try{var raw=localStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.rows&&p.rows.length===MATCHES.length){st=p; st.rows.forEach(function(r,i){if(r.cuota==null)r.cuota=ODDS0[i];});}}}catch(e){}
+    function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+    function money(x){var n=Math.round(x); return (n<0?'-$':'$')+Math.abs(n).toLocaleString('en-US');}
+    var bankI=document.getElementById('c-bank'), rowsB=document.getElementById('c-rows');
+    bankI.value=st.bank;
+    // suggested stake per row (doblez, reinicia al empate)
+    function suggestions(){
+      var s=[],stake=BASE;
+      for(var i=0;i<MATCHES.length;i++){
+        s.push(stake);
+        var r=st.rows[i];
+        if(r.bet && r.res==='E') stake=BASE;
+        else if(r.bet && r.res==='X') stake=Math.round(stake*MULT);
+        // pending: no avanza
+      }
+      return s;
+    }
+    function render(){
+      var sug=suggestions();
+      var draws=0,staked=0,bal=0;
+      rowsB.innerHTML='';
+      st.rows.forEach(function(r,i){
+        var monto = r.monto!==''? parseFloat(r.monto) : sug[i];
+        var odds = parseFloat(r.cuota)||3.2;
+        var pnl=0;
+        if(r.bet){
+          if(r.res==='E'){pnl=monto*(odds-1);draws++;staked+=monto;}
+          else if(r.res==='X'){pnl=-monto;staked+=monto;}
+        }
+        bal+=pnl;
+        var tr=document.createElement('tr');
+        tr.style.borderBottom='1px solid #1c232e';
+        if(r.bet) tr.style.background='rgba(88,166,255,.05)';
+        var pnlc = pnl>0?'#3fb950':(pnl<0?'#f85149':'#9aa7b8');
+        function btn(val,lbl,col){var on=r.res===val; return '<button data-i="'+i+'" data-res="'+val+'" style="background:'+(on?col:'#0d1117')+';color:'+(on?'#0d1117':'#e6edf3')+';border:1px solid '+col+';border-radius:6px;padding:3px 8px;font-size:11.5px;cursor:pointer;font-weight:'+(on?'700':'400')+'">'+lbl+'</button>';}
+        tr.innerHTML=
+          '<td style="padding:6px 8px;text-align:left"><input type="checkbox" data-i="'+i+'" class="c-bet" '+(r.bet?'checked':'')+' style="width:17px;height:17px;cursor:pointer"></td>'+
+          '<td style="padding:6px 8px">'+MATCHES[i]+'</td>'+
+          '<td style="padding:6px 8px;text-align:right;color:#9aa7b8;font-variant-numeric:tabular-nums">'+money(sug[i])+'</td>'+
+          '<td style="padding:6px 8px;text-align:right"><input type="number" data-i="'+i+'" class="c-monto" value="'+(r.monto!==''?r.monto:'')+'" placeholder="'+sug[i]+'" '+(r.bet?'':'disabled')+' style="width:90px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:4px 6px;font-size:13px"></td>'+
+          '<td style="padding:6px 8px;text-align:right"><input type="number" step="0.05" data-i="'+i+'" class="c-cuota" value="'+r.cuota+'" style="width:64px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:4px 6px;font-size:13px"></td>'+
+          '<td style="padding:6px 8px;text-align:center;white-space:nowrap">'+(r.bet? btn('E','Empate','#3fb950')+' '+btn('X','No','#f85149') : '<span style="color:#586170">—</span>')+'</td>'+
+          '<td style="padding:6px 8px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums;color:'+pnlc+'">'+(r.bet&&r.res?money(pnl):'—')+'</td>';
+        rowsB.appendChild(tr);
+      });
+      document.getElementById('c-draws').textContent=draws+' / 2';
+      document.getElementById('c-staked').textContent=money(staked);
+      var be=document.getElementById('c-bal'); be.textContent=money(bal); be.style.color=bal>0?'#3fb950':(bal<0?'#f85149':'#e6edf3');
+      var bank=(parseFloat(st.bank)||0)+bal;
+      document.getElementById('c-bankn').textContent=money(bank);
+      // wire events
+      rowsB.querySelectorAll('.c-bet').forEach(function(el){el.onchange=function(){var i=+el.dataset.i; st.rows[i].bet=el.checked; if(!el.checked){st.rows[i].res=null;} save(); render();};});
+      rowsB.querySelectorAll('.c-monto').forEach(function(el){el.onchange=function(){var i=+el.dataset.i; st.rows[i].monto=el.value; save(); render();};});
+      rowsB.querySelectorAll('.c-cuota').forEach(function(el){el.onchange=function(){var i=+el.dataset.i; st.rows[i].cuota=el.value; save(); render();};});
+      rowsB.querySelectorAll('button[data-res]').forEach(function(el){el.onclick=function(){var i=+el.dataset.i; st.rows[i].res=(st.rows[i].res===el.dataset.res?null:el.dataset.res); save(); render();};});
+    }
+    bankI.onchange=function(){st.bank=bankI.value; save(); render();};
+    document.getElementById('c-reset').onclick=function(){ st.rows=MATCHES.map(function(_,i){return {bet:false,monto:'',res:null,cuota:ODDS0[i]};}); save(); render(); };
+    render();
+  })();
+  </script>
+
   <div class="box" style="font-size:13.5px">
     <b>Cómo jugar la J2:</b> arrancas el <b>jueves con Rayo–Alavés</b> a $100. Si empata, cobras (~$320) y reinicias; si no, el <b>viernes doblas a $200 en Betis–Real Sociedad</b> (tu mejor chance, 33%), y así bajando por la lista <b>saltándote los 3 grandes</b>, hasta cerrar <b>2 empates</b>. Con 7 partidos elegibles y ~30% cada uno, lo normal es cobrar los 2 sin llegar muy abajo en la progresión.
   </div>

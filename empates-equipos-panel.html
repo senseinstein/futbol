@@ -64,23 +64,23 @@
   </table>
 
   <h2 class="sec">📈 Seguimiento en vivo 2026-27</h2>
+  <p style="color:var(--mut);font-size:12.5px">Cada jornada, registra el resultado de tus equipos con <b>Empate / No</b>. El panel avanza la martingala solo (apuesta editable si pagaste distinto), retira al 5º empate, aplica stop loss al 8º y lleva tu balance y bank. <b>Se guarda en este dispositivo.</b></p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin:10px 0 14px">
+    <label style="font-size:12px;color:var(--mut)">Bank inicial<br><span style="color:var(--txt)">$ </span><input id="p-bank" type="number" step="100" value="10000" style="width:120px;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:8px;padding:6px 8px;font-size:14px"></label>
+    <label style="font-size:12px;color:var(--mut)">Cuota de empate<br><input id="p-odds" type="number" step="0.05" value="3.20" style="width:80px;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:8px;padding:6px 8px;font-size:14px"></label>
+    <button id="p-reset" style="margin-left:auto;background:#2a1417;color:#f0a0a0;border:1px solid #5a2a2a;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer">↺ Reiniciar todo</button>
+  </div>
   <div class="tiles">
-    <div class="tile"><div class="k">Balance temporada</div><div class="v">$0</div></div>
-    <div class="tile"><div class="k">Empates logrados</div><div class="v">0 / 85</div></div>
-    <div class="tile"><div class="k">Bank comprometido</div><div class="v">$0</div></div>
-    <div class="tile"><div class="k">Estado</div><div class="v" style="font-size:18px;color:var(--warn)">Esperando J1</div></div>
+    <div class="tile"><div class="k">Balance temporada</div><div class="v" id="p-bal">$0</div></div>
+    <div class="tile"><div class="k">Bank actual</div><div class="v" id="p-bankn">$10,000</div></div>
+    <div class="tile"><div class="k">Empates logrados</div><div class="v" id="p-draws">0 / 85</div></div>
+    <div class="tile"><div class="k">En riesgo (próxima ronda)</div><div class="v" id="p-risk">$0</div></div>
   </div>
 
   <div class="lg"><span class="flag es">ESP</span>LaLiga <span style="color:var(--mut);font-weight:400;font-size:13px">· ×2 · base $100</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th><th>⭐ Partidos imán (jornadas vs tus equipos)</th></tr></thead>
-    <tbody>
-      <tr><td>Betis</td><td class="n">15</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J13, J14, J18, J23, J24, J31, J37</td></tr>
-      <tr><td>Sevilla</td><td class="n">7</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J1, J12, J13, J14, J20, J23, J27, J28</td></tr>
-      <tr><td>Alavés</td><td class="n">10</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J12, J18, J19, J28, J29, J31, J32</td></tr>
-      <tr><td>Real Sociedad</td><td class="n">13</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J2, J12, J14, J19, J24, J27, J29, J31</td></tr>
-      <tr><td>Rayo Vallecano</td><td class="n">14</td><td class="n">0/5</td><td class="n">$100</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td><td class="iman">J1, J2, J12, J14, J20, J31, J32, J37</td></tr>
-    </tbody>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Registrar</th><th>Estado</th><th class="n">P&amp;L</th><th>⭐ Partidos imán</th></tr></thead>
+    <tbody id="lg-ESP"></tbody>
   </table>
 
   <h2 class="sec">🎯 Calendario de partidos imán 2026-27 (LaLiga)</h2>
@@ -119,36 +119,124 @@
 
   <div class="lg"><span class="flag en">ENG</span>Premier <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
-    <tbody>
-      <tr><td>Brighton</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Brentford</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Chelsea</td><td class="n">10</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Bournemouth</td><td class="n">18</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-    </tbody>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Registrar</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <tbody id="lg-ENG"></tbody>
   </table>
 
   <div class="lg"><span class="flag it">ITA</span>Serie A <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
-    <tbody>
-      <tr><td>Bologna</td><td class="n">8</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Lazio</td><td class="n">12</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Udinese</td><td class="n">8</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Sassuolo</td><td class="n">7</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-    </tbody>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Registrar</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <tbody id="lg-ITA"></tbody>
   </table>
 
   <div class="lg"><span class="flag de">GER</span>Bundesliga <span style="color:var(--mut);font-weight:400;font-size:13px">· ×1.5 · base $200</span></div>
   <table>
-    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
-    <tbody>
-      <tr><td>E. Frankfurt</td><td class="n">11</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>FC Augsburg</td><td class="n">7</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Mainz 05</td><td class="n">10</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-      <tr><td>Union Berlin</td><td class="n">9</td><td class="n">0/5</td><td class="n">$200</td><td><span class="chip c-base">BASE</span></td><td class="n">$0</td></tr>
-    </tbody>
+    <thead><tr><th>Equipo</th><th class="n">Emp 25-26</th><th class="n">Empates</th><th class="n">Apuesta</th><th>Registrar</th><th>Estado</th><th class="n">P&amp;L</th></tr></thead>
+    <tbody id="lg-GER"></tbody>
   </table>
+
+  <script>
+  (function(){
+    var KEY='panel_equipos_v1';
+    var META=5, STOP=8;
+    var LEAGUES=[
+      {id:'ESP',base:100,mult:2,teams:[
+        {n:'Betis',e:15,im:'J2, J13, J14, J18, J23, J24, J31, J37'},
+        {n:'Sevilla',e:7,im:'J1, J12, J13, J14, J20, J23, J27, J28'},
+        {n:'Alavés',e:10,im:'J2, J12, J18, J19, J28, J29, J31, J32'},
+        {n:'Real Sociedad',e:13,im:'J2, J12, J14, J19, J24, J27, J29, J31'},
+        {n:'Rayo Vallecano',e:14,im:'J1, J2, J12, J14, J20, J31, J32, J37'}]},
+      {id:'ENG',base:200,mult:1.5,teams:[
+        {n:'Brighton',e:11},{n:'Brentford',e:11},{n:'Chelsea',e:10},{n:'Bournemouth',e:18}]},
+      {id:'ITA',base:200,mult:1.5,teams:[
+        {n:'Bologna',e:8},{n:'Lazio',e:12},{n:'Udinese',e:8},{n:'Sassuolo',e:7}]},
+      {id:'GER',base:200,mult:1.5,teams:[
+        {n:'E. Frankfurt',e:11},{n:'FC Augsburg',e:7},{n:'Mainz 05',e:10},{n:'Union Berlin',e:9}]}
+    ];
+    // state: logs[leagueId][teamIndex] = array of {res:'E'|'X', monto:number}
+    var st={bank:10000,odds:3.20,logs:{}};
+    LEAGUES.forEach(function(L){st.logs[L.id]=L.teams.map(function(){return [];});});
+    try{var raw=localStorage.getItem(KEY); if(raw){var p=JSON.parse(raw); if(p&&p.logs){st=p; LEAGUES.forEach(function(L){if(!st.logs[L.id])st.logs[L.id]=L.teams.map(function(){return [];});});}}}catch(e){}
+    function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+    function money(x){var n=Math.round(x);return(n<0?'-$':'$')+Math.abs(n).toLocaleString('en-US');}
+    var odds=function(){return parseFloat(st.odds)||3.2;};
+
+    // compute a team's chain from its log
+    function calc(L,log){
+      var stake=L.base, pnl=0, draws=0, steps=0, retired=false, stopped=0;
+      for(var i=0;i<log.length;i++){
+        var m = (log[i].monto!=null && log[i].monto!=='')? parseFloat(log[i].monto):stake;
+        if(log[i].res==='E'){pnl+=m*(odds()-1);draws++;stake=L.base;steps=0; if(draws>=META){retired=true;}}
+        else{pnl-=m;steps++; if(steps>=STOP){stake=L.base;steps=0;stopped++;} else {stake=Math.round(stake*L.mult);}}
+      }
+      return {stake:stake,pnl:pnl,draws:draws,steps:steps,retired:retired,stopped:stopped};
+    }
+
+    document.getElementById('p-bank').value=st.bank;
+    document.getElementById('p-odds').value=st.odds;
+
+    function render(){
+      var totBal=0, totDraws=0, totRisk=0;
+      LEAGUES.forEach(function(L){
+        var tb=document.getElementById('lg-'+L.id); tb.innerHTML='';
+        L.teams.forEach(function(t,ti){
+          var log=st.logs[L.id][ti];
+          var c=calc(L,log);
+          totBal+=c.pnl; totDraws+=c.draws;
+          if(!c.retired) totRisk+=c.stake;
+          var tr=document.createElement('tr');
+          var estado, chipbg, chipfg='#0d1117';
+          if(c.retired){estado='RETIRADO ✓';chipbg='#3fb950';}
+          else if(c.steps>=6){estado='PASO '+c.steps+' ⚠️';chipbg='#f85149';}
+          else if(c.steps>0){estado='paso '+c.steps;chipbg='#e3b341';}
+          else{estado='BASE';chipbg='#2a3140';chipfg='#9aa7b8';}
+          var pnlc=c.pnl>0?'#3fb950':(c.pnl<0?'#f85149':'#9aa7b8');
+          var reg;
+          if(c.retired){
+            reg='<span style="color:#586170;font-size:12px">completado</span>';
+          } else {
+            reg='<span style="white-space:nowrap;display:inline-flex;gap:4px;align-items:center">'+
+              '$ <input type="number" class="p-monto" data-l="'+L.id+'" data-t="'+ti+'" value="'+c.stake+'" style="width:74px;text-align:right;background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:3px 5px;font-size:12.5px"> '+
+              '<button class="p-e" data-l="'+L.id+'" data-t="'+ti+'" style="background:#12331d;color:#5ddc86;border:1px solid #2a5a38;border-radius:6px;padding:3px 7px;font-size:11.5px;cursor:pointer">Empate</button>'+
+              '<button class="p-x" data-l="'+L.id+'" data-t="'+ti+'" style="background:#331414;color:#f0a0a0;border:1px solid #5a2a2a;border-radius:6px;padding:3px 7px;font-size:11.5px;cursor:pointer">No</button>'+
+              (log.length?'<button class="p-u" data-l="'+L.id+'" data-t="'+ti+'" title="deshacer" style="background:#1f2733;color:#9aa7b8;border:1px solid #2a3140;border-radius:6px;padding:3px 6px;font-size:11.5px;cursor:pointer">↺</button>':'')+
+              '</span>';
+          }
+          tr.innerHTML=
+            '<td>'+t.n+'</td>'+
+            '<td class="n">'+t.e+'</td>'+
+            '<td class="n">'+c.draws+'/'+META+'</td>'+
+            '<td class="n">'+(c.retired?'—':money(c.stake))+'</td>'+
+            '<td>'+reg+'</td>'+
+            '<td><span class="chip" style="background:'+chipbg+';color:'+chipfg+'">'+estado+'</span></td>'+
+            '<td class="n" style="color:'+pnlc+';font-weight:600">'+money(c.pnl)+'</td>'+
+            (t.im!==undefined?'<td class="iman">'+t.im+'</td>':'');
+          tb.appendChild(tr);
+        });
+      });
+      var be=document.getElementById('p-bal'); be.textContent=money(totBal); be.style.color=totBal>0?'#3fb950':(totBal<0?'#f85149':'');
+      document.getElementById('p-bankn').textContent=money((parseFloat(st.bank)||0)+totBal);
+      document.getElementById('p-draws').textContent=totDraws+' / 85';
+      document.getElementById('p-risk').textContent=money(totRisk);
+      wire();
+    }
+    function pushRes(l,t,res){
+      var inp=document.querySelector('.p-monto[data-l="'+l+'"][data-t="'+t+'"]');
+      var monto = inp? inp.value : '';
+      st.logs[l][t].push({res:res,monto:monto});
+      save(); render();
+    }
+    function wire(){
+      document.querySelectorAll('.p-e').forEach(function(b){b.onclick=function(){pushRes(b.dataset.l,+b.dataset.t,'E');};});
+      document.querySelectorAll('.p-x').forEach(function(b){b.onclick=function(){pushRes(b.dataset.l,+b.dataset.t,'X');};});
+      document.querySelectorAll('.p-u').forEach(function(b){b.onclick=function(){st.logs[b.dataset.l][+b.dataset.t].pop();save();render();};});
+    }
+    document.getElementById('p-bank').onchange=function(){st.bank=this.value;save();render();};
+    document.getElementById('p-odds').onchange=function(){st.odds=this.value;save();render();};
+    document.getElementById('p-reset').onclick=function(){if(confirm('¿Borrar todo el seguimiento?')){LEAGUES.forEach(function(L){st.logs[L.id]=L.teams.map(function(){return [];});});save();render();}};
+    render();
+  })();
+  </script>
 
   <footer>
     Panel de seguimiento. Las apuestas las ejecuta el usuario; el panel solo calcula señales y balance. Calendario 2026-27 verificado (ESPN, BeSoccer, unionrayo, laliga). Partidos imán = análisis histórico de empates 5 temporadas; heurística de scouting, no garantía.<br><br>
