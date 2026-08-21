@@ -90,6 +90,8 @@ var LEAGUE={ESP:{teams:['Betis','Sevilla','Real Sociedad','Rayo Vallecano','Alav
 var META=5, STOP=8, DEF_ODDS=3.20;
 var ODDS0={'Rayo Vallecano|2':3.10,'Alavés|2':3.10,'Betis|2':3.40,'Real Sociedad|2':3.40,'Sevilla|2':3.55};
 var T2L={},ORDER=[]; for(var lg in LEAGUE){LEAGUE[lg].teams.forEach(function(t){T2L[t]=lg;ORDER.push(t);});}
+var ALIAS={'Real Betis':'Betis','Eintracht Frankfurt':'E. Frankfurt'};
+function trackedOf(name){ if(ORDER.indexOf(name)>=0) return name; if(ALIAS[name]) return ALIAS[name]; return null; }
 
 var KEY='master_empatadores_v2';
 var st={bank:20000,r:{},m:{},o:{},open:{}};
@@ -140,10 +142,13 @@ function render(){
   inWeek.sort(function(a,b){return a.w.next.f.iso<b.w.next.f.iso?-1:1;});
   var wl=document.getElementById('week');
   wl.innerHTML = inWeek.length? inWeek.map(function(o){var t=o.t,n=o.w.next,f=n.f,lg=T2L[t];
-    return '<div class="week"><span class="flag '+lg+'">'+lg+'</span> <b>'+t+'</b> <span style="color:#9aa7b8">'+haStr(f)+'</span> <span style="color:#9aa7b8;font-size:12px">J'+f.j+' · '+dstr(f.iso)+'</span>'+
-      '<span class="amt">'+money(n.monto)+'</span>'+
+    var derbi = trackedOf(f.opp)? ' <span class="badge b-hot" title="Ambos son equipos que sigues: 2 apuestas al mismo partido">🔁 derbi · 2 apuestas</span>' : '';
+    var mval=(st.m[t]&&st.m[t][f.j]!=null&&st.m[t][f.j]!=='')?st.m[t][f.j]:'';
+    return '<div class="week"><span class="flag '+lg+'">'+lg+'</span> <b>'+t+'</b> <span style="color:#9aa7b8">'+haStr(f)+'</span> <span style="color:#9aa7b8;font-size:12px">J'+f.j+' · '+dstr(f.iso)+'</span>'+derbi+
+      '<span style="margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="color:#9aa7b8;font-size:11px">apuesta $</span>'+
+      '<input class="mo" data-mt="'+t+'" data-mj="'+f.j+'" type="number" step="10" value="'+mval+'" placeholder="'+Math.round(n.monto)+'" style="width:84px">'+
       '<button class="rb rE" data-mt="'+t+'" data-mj="'+f.j+'" data-mv="E">✅ Empató</button>'+
-      '<button class="rb rX" data-mt="'+t+'" data-mj="'+f.j+'" data-mv="X">❌ No</button></div>';
+      '<button class="rb rX" data-mt="'+t+'" data-mj="'+f.j+'" data-mv="X">❌ No</button></span></div>';
   }).join('') : '<div class="empty">Nada en los próximos días (o falta registrar partidos anteriores para que aparezca el siguiente).</div>';
 
   // Teams by league
