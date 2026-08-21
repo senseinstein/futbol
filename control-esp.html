@@ -169,21 +169,25 @@ function exeCompute(){
   });
   return {map:map,teamPnl:teamPnl,teamDraws:teamDraws,teamNext:teamNext};
 }
-// ExJ per jornada, carry-over
+// ExJ: recorre TODOS los partidos elegibles en ORDEN CRONÓLOGICO real, arrastrando
+// la progresión; tope de 2 empates por jornada (jd[j]).
 function exjCompute(){
-  var map={},total=0,stake=BASE,steps=0,gap=false;
-  JLIST.forEach(function(j){var draws=0;(CAL[j]||[]).forEach(function(m){
-    if(!exjEligible(m))return; var k=key(j,m);
-    if(draws>=2){map[k]={state:'skip2'};return;}
+  var elm=[];
+  JLIST.forEach(function(j){(CAL[j]||[]).forEach(function(m){ if(exjEligible(m)) elm.push({j:j,m:m}); });});
+  elm.sort(function(a,b){var ka=a.m.utc||a.m.iso, kb=b.m.utc||b.m.iso; return ka<kb?-1:(ka>kb?1:0);});
+  var map={},total=0,stake=BASE,steps=0,gap=false,jd={};
+  elm.forEach(function(e){
+    var j=e.j,m=e.m,k=key(j,m);
+    if((jd[j]||0)>=2){map[k]={state:'skip2'};return;}
     var r=st.res[k];
     if(!r){map[k]={sug:stake,state:gap?'pend':'next'};if(!gap)gap=true;return;}
     if(gap){map[k]={state:'pend'};return;}
     var ov=(st.mJ[k]!=null&&st.mJ[k]!=='')?parseFloat(st.mJ[k]):stake;
     var od=odFor(k),pnl;
-    if(r==='E'){pnl=ov*(od-1);total+=pnl;draws++;stake=BASE;steps=0;}
+    if(r==='E'){pnl=ov*(od-1);total+=pnl;jd[j]=(jd[j]||0)+1;stake=BASE;steps=0;}
     else{pnl=-ov;total-=ov;steps++;if(steps>=STOP){stake=BASE;steps=0;}else stake=Math.round(stake*MULT);}
     map[k]={sug:ov,pnl:pnl,res:r,state:'done'};
-  });});
+  });
   return {map:map,total:total};
 }
 
