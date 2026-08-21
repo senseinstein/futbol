@@ -153,12 +153,11 @@ function exeCompute(){
     var fx=[];
     JLIST.forEach(function(j){(CAL[j]||[]).forEach(function(m){ if(m.h===T||m.a===T){var opp=(m.h===T)?m.a:m.h; if(!isLeader(opp))fx.push({j:j,m:m});} });});
     fx.sort(function(a,b){return a.m.iso<b.m.iso?-1:(a.m.iso>b.m.iso?1:0);}); // ORDEN CRONOLÓGICO
-    var stake=BASE,draws=0,steps=0,gap=false;teamPnl[T]=0;teamNext[T]=null;
+    var stake=BASE,draws=0,steps=0;teamPnl[T]=0;teamNext[T]=null;
     fx.forEach(function(e){var j=e.j,m=e.m,mk=T+'|'+key(j,m);
       if(draws>=META){map[mk]={state:'retired'};return;}
       var r=st.res[key(j,m)];
-      if(!r){ if(!gap){gap=true;teamNext[T]={j:j,m:m,sug:stake};map[mk]={sug:stake,state:'next'};} else {map[mk]={sug:stake,state:'pend'};} return; }
-      if(gap){map[mk]={state:'pend'};return;}
+      if(!r){ if(!teamNext[T]){teamNext[T]={j:j,m:m,sug:stake};map[mk]={sug:stake,state:'next'};} else {map[mk]={sug:stake,state:'pend'};} return; }
       var ov=(st.mE[mk]!=null&&st.mE[mk]!=='')?parseFloat(st.mE[mk]):stake;
       var od=odFor(key(j,m)),pnl;
       if(r==='E'){pnl=ov*(od-1);teamPnl[T]+=pnl;draws++;stake=BASE;steps=0;}
@@ -175,13 +174,12 @@ function exjCompute(){
   var elm=[];
   JLIST.forEach(function(j){(CAL[j]||[]).forEach(function(m){ if(exjEligible(m)) elm.push({j:j,m:m}); });});
   elm.sort(function(a,b){var ka=a.m.utc||a.m.iso, kb=b.m.utc||b.m.iso; return ka<kb?-1:(ka>kb?1:0);});
-  var map={},total=0,stake=BASE,steps=0,gap=false,jd={};
+  var map={},total=0,stake=BASE,steps=0,nextSet=false,jd={};
   elm.forEach(function(e){
     var j=e.j,m=e.m,k=key(j,m);
     if((jd[j]||0)>=2){map[k]={state:'skip2'};return;}
     var r=st.res[k];
-    if(!r){map[k]={sug:stake,state:gap?'pend':'next'};if(!gap)gap=true;return;}
-    if(gap){map[k]={state:'pend'};return;}
+    if(!r){map[k]={sug:stake,state:nextSet?'pend':'next'};nextSet=true;return;}
     var ov=(st.mJ[k]!=null&&st.mJ[k]!=='')?parseFloat(st.mJ[k]):stake;
     var od=odFor(k),pnl;
     if(r==='E'){pnl=ov*(od-1);total+=pnl;jd[j]=(jd[j]||0)+1;stake=BASE;steps=0;}
