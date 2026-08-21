@@ -47,7 +47,6 @@
   .tl{display:inline-block;min-width:34px;color:#8fa3b8;font-size:9.5px;text-align:right;margin-right:3px}
   input.mo,input.od{background:#0d1117;color:#e6edf3;border:1px solid #2a3140;border-radius:6px;padding:3px 5px;font-size:12px;text-align:right}
   input.mo{width:64px}input.od{width:46px}
-  input.mJ{border-color:#2b4straight}
   input.mJ{border-color:#2e4d73;background:#0e1722}
   input.mE{border-color:#2a5a3c;background:#0e1a12}
   .rb{border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;font-weight:700;border:1px solid}
@@ -62,6 +61,10 @@
   #gate .err{color:var(--neg);font-size:12px;height:14px;margin-top:6px}
   #app{display:none}
   .lg-flag{display:inline-block;background:#c8102e;color:#fff;font-size:10px;font-weight:800;border-radius:5px;padding:2px 6px;vertical-align:middle}
+  .autobar{display:flex;gap:11px;align-items:center;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px 13px;margin-bottom:8px}
+  #upd{background:#173a5e;color:#9fd0ff;border:1px solid #2e5a86;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+  #upd:disabled{opacity:.6;cursor:default}
+  .autost{color:var(--mut);font-size:12px}
 </style></head>
 <body>
 <div id="gate"><div class="box">
@@ -79,6 +82,11 @@
   <div class="sub">Temporada 2026-27 · calendario completo · dos estrategias en paralelo</div>
 
   <div class="kpis" id="kpis"></div>
+
+  <div class="autobar">
+    <button id="upd">🔄 Actualizar resultados</button>
+    <span id="updst" class="autost">Marca los empates automáticamente desde internet. (Funciona en el sitio publicado, no en la vista previa.)</span>
+  </div>
 
   <h2 class="sec">⭐ Mis equipos</h2>
   <div class="teams" id="teams"></div>
@@ -235,7 +243,36 @@ function render(){
 }
 document.getElementById('bank').addEventListener('change',function(e){st.bank=e.target.value;save();render();});
 document.getElementById('reset').onclick=function(){if(confirm('¿Borrar todo el control de LaLiga?')){st={bank:st.bank,res:{},mJ:{},mE:{},od:{},open:{}};save();render();}};
-function unlock(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';document.getElementById('bank').value=st.bank;var tn=document.getElementById('tzn');if(tn&&TZ)tn.textContent=TZ.replace(/_/g,' ');render();}
+
+// ===== Auto-actualizar resultados (TheSportsDB, API pública gratuita) =====
+var ALLKEYS={}; JLIST.forEach(function(j){(CAL[j]||[]).forEach(function(m){ALLKEYS[key(j,m)]=1;});});
+function norm(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[.\-]/g,' ').replace(/\s+/g,' ').trim();}
+var APIMAP={'rayo vallecano':'Rayo Vallecano','deportivo alaves':'Alavés','alaves':'Alavés','real betis':'Real Betis','betis':'Real Betis','real sociedad':'Real Sociedad','athletic bilbao':'Athletic','athletic club':'Athletic','athletic':'Athletic','sevilla':'Sevilla','sevilla fc':'Sevilla','valencia':'Valencia','valencia cf':'Valencia','celta vigo':'Celta','celta de vigo':'Celta','rc celta':'Celta','rc celta de vigo':'Celta','espanyol':'Espanyol','rcd espanyol':'Espanyol','real madrid':'Real Madrid','barcelona':'Barcelona','fc barcelona':'Barcelona','atletico madrid':'Atlético Madrid','atletico de madrid':'Atlético Madrid','club atletico de madrid':'Atlético Madrid','getafe':'Getafe','getafe cf':'Getafe','osasuna':'Osasuna','ca osasuna':'Osasuna','villarreal':'Villarreal','villarreal cf':'Villarreal','levante':'Levante','levante ud':'Levante','elche':'Elche','elche cf':'Elche','racing santander':'Racing','racing de santander':'Racing','real racing club':'Racing','real racing club de santander':'Racing','racing':'Racing','deportivo la coruna':'Deportivo','rc deportivo':'Deportivo','rc deportivo de la coruna':'Deportivo','deportivo de la coruna':'Deportivo','deportivo':'Deportivo','malaga':'Málaga','malaga cf':'Málaga'};
+function mapTeam(n){return APIMAP[norm(n)]||null;}
+function setStatus(t){document.getElementById('updst').textContent=t;}
+function actualizar(auto){
+  var btn=document.getElementById('upd'); btn.disabled=true; if(!auto)setStatus('Consultando resultados…');
+  fetch('https://www.thesportsdb.com/api/v1/json/3/eventsseason.php?id=4335&s=2026-2027')
+   .then(function(r){return r.json();})
+   .then(function(d){
+     var ev=(d&&d.events)||[]; var n=0,un=0,ya=0;
+     ev.forEach(function(e){
+       if(e.intHomeScore==null||e.intAwayScore==null)return;
+       var mh=mapTeam(e.strHomeTeam),ma=mapTeam(e.strAwayTeam); if(!mh||!ma){un++;return;}
+       var rd=parseInt(e.intRound,10); var k='J'+rd+'|'+mh+'|'+ma;
+       if(!ALLKEYS[k]){var k2='J'+rd+'|'+ma+'|'+mh; if(ALLKEYS[k2])k=k2; else {un++;return;}}
+       var v=(+e.intHomeScore===+e.intAwayScore)?'E':'X';
+       if(st.res[k]===v)ya++; else{st.res[k]=v;n++;}
+     });
+     save();render();
+     var now=new Date();
+     setStatus('✔ Actualizado '+('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2)+' · '+n+' nuevos, '+ya+' ya estaban'+(un?(' · '+un+' no reconocidos'):'')+'. Verifica siempre los importantes.');
+     btn.disabled=false;
+   })
+   .catch(function(err){ setStatus('⚠ No se pudo conectar (sin internet, o estás en la vista previa que bloquea llamadas externas). En el sitio publicado sí funciona.'); btn.disabled=false; });
+}
+document.getElementById('upd').onclick=function(){actualizar(false);};
+function unlock(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='block';document.getElementById('bank').value=st.bank;var tn=document.getElementById('tzn');if(tn&&TZ)tn.textContent=TZ.replace(/_/g,' ');render();try{actualizar(true);}catch(e){}}
 try{if(sessionStorage.getItem('esp_ok')==='1')unlock();}catch(e){}
 document.getElementById('gate-go').onclick=function(){var v=(document.getElementById('gate-in').value||'').trim().toLowerCase();if(v===PASSWORD.toLowerCase()){try{sessionStorage.setItem('esp_ok','1');}catch(e){}unlock();}else{document.getElementById('gate-err').textContent='Clave incorrecta';}};
 document.getElementById('gate-in').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('gate-go').click();});
